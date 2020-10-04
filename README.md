@@ -1,13 +1,13 @@
 # TimeTracker
 This is a time tracking app
 
-##Funkcionális követelményeit
+#Funkcionális követelményeit
 
 
-##Nem funkcionális követelményei
+#Nem funkcionális követelményei
 
 
-##Szakterületi fogalomjegyzék
+#Szakterületi fogalomjegyzék
 
 
-##Szerepkörök
+#Szerepkörök
