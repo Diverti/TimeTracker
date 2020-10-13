@@ -22,7 +22,11 @@ Egy olyan alkalamzást szeretnénk bemutatni ami képes összeszedett és komple
 - Egy adott projekten belül létre tudunk hozni több feladatot, viszont egyszerre csak egy feladatra tudunk időt mérni.
 
 ## Nem funkcionális követelményei
-
+- REST végpontok tesztelése
+- Felhasználóbarát és igényes UI
+- Több böngésző támogatása
+- Biztonságos belépési rendszer
+Használt programok:
 
 ## Szakterületi fogalomjegyzék
 
