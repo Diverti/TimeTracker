@@ -26,7 +26,7 @@ Egy olyan alkalamzást szeretnénk bemutatni ami képes összeszedett és komple
 - Felhasználóbarát és igényes UI
 - Több böngésző támogatása
 - Biztonságos belépési rendszer
-Használt programok:
+#### Használt programok:
 
 ## Szakterületi fogalomjegyzék
 
