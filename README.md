@@ -27,6 +27,10 @@ Egy olyan alkalamzást szeretnénk bemutatni ami képes összeszedett és komple
 - Több böngésző támogatása
 - Biztonságos belépési rendszer
 #### Használt programok:
-
+- Laragon
+- Visual Studio Code
+#### Fejlesztői környezet:
+- Back-end: Laravel
+- Front-end: Angular
 ## Szakterületi fogalomjegyzék
 
