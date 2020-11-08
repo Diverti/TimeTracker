@@ -14,4 +14,12 @@ class Group extends Model
     protected $fillable = [
         'name', 'created_by', //created_by egy id
     ];
+
+    public function users() {
+        return $this->belongsToMany('App\User', 'user_group'); 
+    }
+
+    public function projects() {
+        return $this->hasMany('App\Project');
+    }
 }

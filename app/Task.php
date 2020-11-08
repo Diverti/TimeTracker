@@ -15,13 +15,24 @@ class Task extends Model
         'name', 'is_done', 'due_date',
     ];
 
-    //kapcsolótábla
+    //kapcsolótábla, N to N
     //return $this->belongsToMany('App\User', 'subject_user'); 
 
     //1 to N
     //return $this->hasMany('App\Task');
 
-    //N to 1
+    //1 to 1
+    //return $this->hasOne('App\Task');
+
+    //1 to 1 | 1 to N (reverse)
     //return $this->belongsTo(User::class);
+
+    public function tasktimes() {
+        return $this->hasMany('App\TaskTime');
+    }
+
+    public function project() {
+        return $this->belongsTo('App\Project')
+    }
     
 }

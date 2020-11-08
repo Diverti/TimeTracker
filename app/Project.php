@@ -14,4 +14,17 @@ class Project extends Model
     protected $fillable = [
         'name', 'due_date', 'is_done', 'group_id', 'company_id', //group_id, company_id
     ];
+
+    public function company() {
+        return $this->hasOne('App\Company');
+    }
+
+    public function group()
+    {
+        return $this->hasOne('App\Group');
+    }
+
+    public function tasks() {
+        return $this->hasMany('App\Task');
+    }
 }

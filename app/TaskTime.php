@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Company extends Model
+class TaskTime extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -12,10 +12,10 @@ class Company extends Model
      * @var array
      */
     protected $fillable = [
-        'name',
+        'start', 'end', 'task_id',
     ];
 
-    public function projects() {
-        return $this->hasMany('App\Project');
+    public function task() {
+        return $this->belongsTo(Task::class);
     }
 }
