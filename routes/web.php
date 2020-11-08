@@ -16,3 +16,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('companies','CompaniesController');
+Route::resource('groups','GroupsController');
+Route::resource('project','ProjectsController');
+Route::post('tasks/{id}','TasksController@store');
+Route::get('tasks/create/{id}','TasksController@create');
+Route::get('tasks/{id}','TasksController@index');
