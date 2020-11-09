@@ -1,0 +1,16 @@
+deploy:
+  # do not change the working directory
+  skip_cleanup: true
+
+  # use Heroku
+  provider: heroku
+
+  # Read below
+  api_key:
+    secure: "oMYA0fIToLWWbsf0bftKRlGpw8j5nj+xXbH/78IMBXdKyvCQZWWljb7EsxPbp3ns75sgFsCje8PLhWi8cMXMUIe0R1U9Rv+zZy+u2rflGPCpwZOng4ZYmLeFkwqCd7PrxLu+pGVqeodkVA0yOeq/uuKa8zx2P4YhZPn64ms6GFtbX4SL4Ku9ZP44b3eTAMMz8rJtTPBvwwbD+2d1HITMrzY+ySmFqL0UnW73LwGZ8kOtaG/mMUVfZzSNbjYaVPIFvPh9ZKX7BrI+pkgVkf5ozpZapYV3eWq3AgbU0TmKV/8Ic8FYzine5S+nVBrivFcjOK1KmdLA56WdwOaiTo44YiBL8jA+Fr7QhdHODF0NcSgg48mCoF5MdJ1SR2/SobCne9oSU+53b8dZwZzBdBL6LKuJGelgWqCPz4b94SXQheFadOhyRzlkvW+LDYQcfKV7htS6Wxz9Au8atbQvS6P6AxXT5fRC+L2VNtgTjONTEgx3XSwJV4h4qXlo5Tsbub5sNMFSGkm98DX0huDWEUOtwxzGFeb4F/zAHL+veerFM+sXSpRG0wxy8vs7PjkE0k++b2kIvXTWq29xxDeSnl5CwanBR/pd7KwVoHQmkM/CxJrgFKtv6ZQGuUk2vvrWj0GH8Cd0BgqlxvnHfwz3EV49CA9xdovKHgtDjEmHb5yV2gE="
+  
+  # App name on Heroku
+  app: fswp-java-restapi-issuetracker
+
+  # Deploy if there were changes on the main branch
+  on: main
