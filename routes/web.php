@@ -19,7 +19,14 @@ Route::get('/', function () {
 
 Route::resource('companies','CompaniesController');
 Route::resource('groups','GroupsController');
-Route::resource('project','ProjectsController');
+Route::resource('projects','ProjectsController');
+
+Route::post('projects/take/{id}','ProjectsController@takeProject');
+Route::get('projects/group/{id}','ProjectsController@forGroup');
+
+Route::post('groups/join','GroupsController@join');
+
+
 Route::post('tasks/{id}','TasksController@store');
 Route::get('tasks/create/{id}','TasksController@create');
 Route::get('tasks/{id}','TasksController@index');

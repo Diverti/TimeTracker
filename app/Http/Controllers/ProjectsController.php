@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Project;
+use App\Group;
+use App\User;
+use Carbon\Carbon;
+use DateTime;
 
 class ProjectsController extends Controller
 {
@@ -13,7 +18,11 @@ class ProjectsController extends Controller
      */
     public function index()
     {
-        //
+        return Project::whereNull('group_id')->get();
+    }
+
+    public function forGroup($group_id){
+        return Project::where('group_id',$group_id)->get();
     }
 
     /**
@@ -34,7 +43,22 @@ class ProjectsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $project = new Project;
+        $project->name = $request->name;
+        $project->due_date = Carbon::parse($request->due_date);
+        $project->group_id = NULL;
+        $project->is_done = 0;
+        $project->company_id = $request->company_id;
+        $project->save();
+
+        return response($project, 200);
+    }
+
+    public function takeProject(Request $request, $project_id){
+        $project = Project::find($project_id);
+        $project->group_id = $request->group_id;
+        $project->save();
+        return response('Project taken.', 200);
     }
 
     /**
@@ -45,7 +69,11 @@ class ProjectsController extends Controller
      */
     public function show($id)
     {
-        //
+        try{
+            return Project::where('id',$id)->firstOrFail();
+        } catch(\Illuminate\Database\Eloquent\ModelNotFoundException $e){
+            return response('No project with such id.', 404);
+        }
     }
 
     /**
@@ -68,7 +96,24 @@ class ProjectsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($request->user_id);
+        $project = Project::find($id);
+
+        foreach($user->groups()->get() as $group){
+            if($group->id == $project->group_id){
+                if($request->name)
+                    $project->name = $request->name;
+                if($request->due_date)
+                    $project->due_date = Carbon::parse($request->due_date);
+                if($request->group_id)
+                    $project->group_id = $request->group_id;
+                if($request->company_id)
+                    $project->company_id = $request->company_id;
+                $project->save();
+                return response($project,200);
+            }
+        }
+        return response('',401);
     }
 
     /**
@@ -77,8 +122,23 @@ class ProjectsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $user = User::find($request->user_id);
+        try{
+            $project = Project::where('id',$id)->firstOrFail();
+        } catch(\Illuminate\Database\Eloquent\ModelNotFoundException $e){
+            return response('No project with such id.', 404);
+        }
+        
+
+        foreach($user->groups()->get() as $group){
+            if($group->id == $project->group_id){
+                $project->delete();
+                return response('Project deleted.',200);
+            }
+        }
+        return response('',401);
+
     }
 }

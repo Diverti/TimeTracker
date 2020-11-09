@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Company;
 
 class CompaniesController extends Controller
 {
@@ -13,7 +14,7 @@ class CompaniesController extends Controller
      */
     public function index()
     {
-        //
+        return Company::all();
     }
 
     /**
@@ -34,7 +35,10 @@ class CompaniesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $company = new Company;
+        $company->name = $request->name;
+        $company->save();
+        return response($company,201);
     }
 
     /**
@@ -45,7 +49,11 @@ class CompaniesController extends Controller
      */
     public function show($id)
     {
-        //
+        try{
+            return Company::where('id',$id)->firstOrFail();
+        } catch(\Illuminate\Database\Eloquent\ModelNotFoundException $e){
+            return response('No company with such id.',404);
+        }
     }
 
     /**
@@ -68,7 +76,14 @@ class CompaniesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try{
+            $company = Company::where('id',$id)->firstOrFail();
+            $company->name = $request->name;
+            $company->save();
+            return response($company,200);
+        } catch(\Illuminate\Database\Eloquent\ModelNotFoundException $e){
+            return response('No company with such id.',404);
+        }
     }
 
     /**
@@ -79,6 +94,12 @@ class CompaniesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+            $company = Company::where('id',$id)->firstOrFail();
+            $company->delete();
+            return response('Company deleted.', 200);
+        } catch(\Illuminate\Database\Eloquent\ModelNotFoundException $e){
+            return response('No company with such id.', 404);
+        }
     }
 }
