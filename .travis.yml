@@ -1,5 +1,8 @@
 language: php
 
+before_script:
+    - composer install
+
 deploy:
   # do not change the working directory
   skip_cleanup: true
