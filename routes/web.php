@@ -17,16 +17,24 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//Companies
 Route::resource('companies','CompaniesController');
+
+//Groups
 Route::resource('groups','GroupsController');
-Route::resource('projects','ProjectsController');
-
-Route::post('projects/take/{id}','ProjectsController@takeProject');
-Route::get('projects/group/{id}','ProjectsController@forGroup');
-
 Route::post('groups/join','GroupsController@join');
 
+//Projects
+Route::resource('projects','ProjectsController');
+Route::post('projects/{id}/take','ProjectsController@takeProject');
+Route::get('projects/group/{id}','ProjectsController@forGroup');
 
-Route::post('tasks/{id}','TasksController@store');
-Route::get('tasks/create/{id}','TasksController@create');
-Route::get('tasks/{id}','TasksController@index');
+//Tasks
+//Route::resource('tasks','TasksController');
+Route::get('projects/{id}/tasks','TasksController@index');
+Route::post('projects/{id}/tasks','TasksController@store');
+Route::get('tasks/{id}','TasksController@show');
+Route::put('tasks/{id}','TasksController@update');
+Route::patch('tasks/{id}','TasksController@update');
+Route::post('tasks/{id}/done','TasksController@done');
+Route::delete('tasks/{id}','TasksController@destroy');
