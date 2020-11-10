@@ -18,6 +18,7 @@ class CreateTaskTimesTable extends Migration
             $table->dateTime('start', 0);
             $table->dateTime('end', 0);
             $table->foreignId('task_id');
+            $table->foreignId('created_by'); //userid
             $table->timestamps();
         });
     }
