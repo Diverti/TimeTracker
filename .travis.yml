@@ -15,4 +15,4 @@ deploy:
   # Deploy if there were changes on the main branch
   on: main
 
-  language: php
+language: php
