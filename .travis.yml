@@ -1,3 +1,5 @@
+language: php
+
 deploy:
   # do not change the working directory
   skip_cleanup: true
@@ -14,5 +16,3 @@ deploy:
 
   # Deploy if there were changes on the main branch
   on: main
-
-language: php
