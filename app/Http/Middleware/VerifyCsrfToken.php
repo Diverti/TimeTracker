@@ -17,6 +17,8 @@ class VerifyCsrfToken extends Middleware
         "/projects",
         "/projects/*",
         "/groups",
-        "/groups/*"
+        "/groups/*",
+        "/tasks",
+        "/tasks/*"
     ];
 }

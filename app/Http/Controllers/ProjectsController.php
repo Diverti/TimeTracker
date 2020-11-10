@@ -97,7 +97,12 @@ class ProjectsController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::find($request->user_id);
-        $project = Project::find($id);
+        try{
+            $project = Project::where('id',$id)->firstOrFail();
+        } catch(\Illuminate\Database\Eloquent\ModelNotFoundException $e){
+            return response('No project with such id.',404);
+        }
+        
 
         foreach($user->groups()->get() as $group){
             if($group->id == $project->group_id){
@@ -140,5 +145,20 @@ class ProjectsController extends Controller
         }
         return response('',401);
 
+    }
+
+    public function done($id){
+        $tasks = Project::find($id)->tasks()->get();
+        $is_done = 1;
+
+        foreach($tasks as $task){
+            if(!$task->is_done){
+                $is_done = 0;
+            }
+        }
+        
+        $project = Project::find($id);
+        $project->is_done = $is_done;
+        $project->save();
     }
 }
