@@ -14,6 +14,35 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+/*Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});*/
+
+// Authentication
+Route::post('/', [AuthController::class, 'index']);
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login',    [AuthController::class, 'login']);
+
+Route::middleware('auth:api')->group(function() {
+    //Companies
+    Route::resource('companies', 'CompaniesController');
+
+    //Groups
+    Route::resource('groups', 'GroupsController');
+    Route::post('groups/join', 'GroupsController@join');
+
+    //Projects
+    Route::resource('projects', 'ProjectsController');
+    Route::post('projects/{id}/take', 'ProjectsController@takeProject');
+    Route::get('projects/group/{id}', 'ProjectsController@forGroup');
+
+    //Tasks
+    //Route::resource('tasks','TasksController');
+    Route::get('projects/{id}/tasks', 'TasksController@index');
+    Route::post('projects/{id}/tasks', 'TasksController@store');
+    Route::get('tasks/{id}', 'TasksController@show');
+    Route::put('tasks/{id}', 'TasksController@update');
+    Route::patch('tasks/{id}', 'TasksController@update');
+    Route::post('tasks/{id}/done', 'TasksController@done');
+    Route::delete('tasks/{id}', 'TasksController@destroy');
 });

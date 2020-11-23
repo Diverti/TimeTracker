@@ -18,8 +18,7 @@ class ProjectsController extends Controller
      */
     public function index()
     {
-        return Project::all();
-       // return Project::whereNull('group_id')->get();
+        return response()->json(['status' => 'OK', 'projects' => Project::all()], 200);
     }
 
     public function forGroup($group_id){
