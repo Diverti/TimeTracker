@@ -32,6 +32,6 @@ jobs:
               provider: heroku
               strategy: api
               api_key:
-                secure: "kWs/4d8BIPLz3/u7Xe/dK6kY0tJiroq5ilyyc4KpwD2QVJHcGwNOOY/YIuujPTZ2DR0fM0589hin59wEdse1xJeVeAd0s1dfTWmh7lohxvTUf92z8CJLo+EzEJZFLBWYEvT0xI2L7nnQJmva9EI57hbzpQEGwgPQVKjuELpOHX2cq/h/3N/pvPnzIlvuVyU8CwYAAMm6CbnC2XbBBkF+lOMOzO2xl+V6Ce5JN9d2OX2BfGInDiTu1ko57lZwxX7e95tWRy5gPK1ftjmh8TV2OHqXVb6rRGaOXxD7dR55aZYe7G+KzKmmoxv1k9JKDRS5S8Qho7klQqT4TinOfnVPo2EsH9Uz497eQPwQN91OogZgjdXg71b8U4QzgYk46xGiVa2QzppzlxlcGTaLCEH9IDdpUoqdDVhzfmIWpKRCoEeReo7rYfPyrbB4jqpFpxdI4VbQgvqhaQWkgOJpHTbOV3v8/uS9keD33LXtullVSXl9auClAixKfd8lEVxumwbWOk/oCfiiI27lyxdpkH2koyButwLeQy0Zzr2ecrK5E9Uh1Th6Vx26nq7pVuWi7EfAjeTbAPe0W0bT4d4Mob0wPbyO/+W6edqdQN+A9AKom33iXxTEKPrvRnekE2Ar5ZdCdu56YAsC0xqOdD35c83HUe2nDNT8EwS5yppEUDQ/X2I="
+                secure: "amflL3T56ac1SeK2kMTULCeIUAtzfHwuy1CrDlnoZxMs64j8CV21S8IaFtpUYCi3mwNRRcV+6oYjVBwKobSlHlgPn/JTWiTWG/zI5VHBeY3zfYLQWadXlRisow7ioeY9XcMxkUTiG45nhyCa5Pdc03CJWL/YWHU5bp/oGm0GYlXt/yGQhRdmSNWIC798mVEllxNbg4BA/PcZ3Vb92GZC3pJDOaVoLw6Hq8qBJhQy5rzW8ZrbTHzjecGIpRCmbup/alnjP/EGF++HUymo5qxEpoHw0V1Fd62xM8DWSXm6rqRFDmZEfdOO6jUuSsR2uBgx/8P7yXpw6Gz42ZyjY/WZ/jqL0qW22CdskV3kWcByEEaQMFXUHzYz1PKiliPs+ks1Oe95qu9NCunVreGMI+eaw3q94etpW2QhiQBpJ3IHGNTDDuP/rsouQUmSvukuwevR2z1Od0AUfflxY0MKXl1OcRTQnfJ08ulpQ/c0XINuRhxtsQmn9KKaugXUgrLzDZjCEEhGHsBJ1d4aXWpeTAGyiNzFerVGRCKJwZDMqOXqRorxCah870w8JBon3QoLLoBp6gQEcJIo6SyfaA4YG7+0FMrNHR2SL5qav50qF9bFKD21bnv0QRLuwATbWQLqVGm5VGwaTuJhjFoen2IUO2x5rMusroz/1r+mfGYYcCKHtvA="
               app: titrack
               on: main
