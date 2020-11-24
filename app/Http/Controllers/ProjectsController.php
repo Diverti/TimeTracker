@@ -22,7 +22,7 @@ class ProjectsController extends Controller
     }
 
     public function forGroup($group_id){
-        return Project::where('group_id',$group_id)->get();
+        return response()->json(['status' => 'OK', 'project' => Project::where('group_id', $group_id)->get()], 200);
     }
 
     /**

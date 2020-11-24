@@ -19,9 +19,9 @@ use Illuminate\Support\Facades\Route;
 });*/
 
 // Authentication
-Route::post('/', [AuthController::class, 'index']);
-Route::post('/register', [AuthController::class, 'register']);
-Route::post('/login',    [AuthController::class, 'login']);
+Route::get('/', 'AuthController@index');
+Route::post('/register', 'AuthController@register');
+Route::post('/login',    'AuthController@login');
 
 Route::middleware('auth:api')->group(function() {
     //Companies

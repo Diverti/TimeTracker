@@ -2,44 +2,42 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Lcobucci\JWT\Parser;
 
-const token = 'Secret';
+const token = 'SecretToken';
 
-class ApiAuthController extends Controller
+class AuthController extends Controller
 {
-    public function index(Request $request) {
-        return response()->json(['status' => 'OK'], 200); 
+    public function index(Request $request)
+    {
+        return response()->json(['status' => 'OK'], 200);
     }
 
     /**
-     * New user registration
+     * User registration
      */
     public function register(Request $request)
     {
-        // Data validation
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|email|unique:users',
+            'permission' => '1',
             'password' => 'required',
         ]);
 
-        // If there is an error, return with error code 422 (Unprocessable Entity) and the errors
         if ($validator->fails()) {
             return response()->json(['status' => 'error', 'error' => $validator->errors()], 422);
         }
 
-        // No error, create new user, hash password, insert in the users table
         $user = $request->all();
         $user['password'] = Hash::make($user['password']);
         $user = User::create($user);
 
-        // Create token for the new user and return it with 201
         $token = $user->createToken(token)->accessToken;
         return response()->json(['status' => 'OK', 'token' => $token], 201);
     }
@@ -52,9 +50,6 @@ class ApiAuthController extends Controller
     {
         $credentials = $request->only('email', 'password');
 
-        // Check the credentials
-        // if OK, then create a token and return it with 200
-        // if not, then return with 401
         if (auth()->attempt($credentials)) {
             $token = Auth::user()->createToken(token)->accessToken;
             return response()->json(['status' => 'OK', 'token' => $token], 200);
