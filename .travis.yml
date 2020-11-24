@@ -27,10 +27,11 @@ jobs:
         - stage: Deploy
           script: skip
           deploy:
-              cleanup: false
+            deploy:
+              skip_cleanup: true
               provider: heroku
               strategy: api
+              api_key:
+                secure: "kWs/4d8BIPLz3/u7Xe/dK6kY0tJiroq5ilyyc4KpwD2QVJHcGwNOOY/YIuujPTZ2DR0fM0589hin59wEdse1xJeVeAd0s1dfTWmh7lohxvTUf92z8CJLo+EzEJZFLBWYEvT0xI2L7nnQJmva9EI57hbzpQEGwgPQVKjuELpOHX2cq/h/3N/pvPnzIlvuVyU8CwYAAMm6CbnC2XbBBkF+lOMOzO2xl+V6Ce5JN9d2OX2BfGInDiTu1ko57lZwxX7e95tWRy5gPK1ftjmh8TV2OHqXVb6rRGaOXxD7dR55aZYe7G+KzKmmoxv1k9JKDRS5S8Qho7klQqT4TinOfnVPo2EsH9Uz497eQPwQN91OogZgjdXg71b8U4QzgYk46xGiVa2QzppzlxlcGTaLCEH9IDdpUoqdDVhzfmIWpKRCoEeReo7rYfPyrbB4jqpFpxdI4VbQgvqhaQWkgOJpHTbOV3v8/uS9keD33LXtullVSXl9auClAixKfd8lEVxumwbWOk/oCfiiI27lyxdpkH2koyButwLeQy0Zzr2ecrK5E9Uh1Th6Vx26nq7pVuWi7EfAjeTbAPe0W0bT4d4Mob0wPbyO/+W6edqdQN+A9AKom33iXxTEKPrvRnekE2Ar5ZdCdu56YAsC0xqOdD35c83HUe2nDNT8EwS5yppEUDQ/X2I="
               app: titrack
               on: main
-              api_key:
-                  secure: "oMYA0fIToLWWbsf0bftKRlGpw8j5nj+xXbH/78IMBXdKyvCQZWWljb7EsxPbp3ns75sgFsCje8PLhWi8cMXMUIe0R1U9Rv+zZy+u2rflGPCpwZOng4ZYmLeFkwqCd7PrxLu+pGVqeodkVA0yOeq/uuKa8zx2P4YhZPn64ms6GFtbX4SL4Ku9ZP44b3eTAMMz8rJtTPBvwwbD+2d1HITMrzY+ySmFqL0UnW73LwGZ8kOtaG/mMUVfZzSNbjYaVPIFvPh9ZKX7BrI+pkgVkf5ozpZapYV3eWq3AgbU0TmKV/8Ic8FYzine5S+nVBrivFcjOK1KmdLA56WdwOaiTo44YiBL8jA+Fr7QhdHODF0NcSgg48mCoF5MdJ1SR2/SobCne9oSU+53b8dZwZzBdBL6LKuJGelgWqCPz4b94SXQheFadOhyRzlkvW+LDYQcfKV7htS6Wxz9Au8atbQvS6P6AxXT5fRC+L2VNtgTjONTEgx3XSwJV4h4qXlo5Tsbub5sNMFSGkm98DX0huDWEUOtwxzGFeb4F/zAHL+veerFM+sXSpRG0wxy8vs7PjkE0k++b2kIvXTWq29xxDeSnl5CwanBR/pd7KwVoHQmkM/CxJrgFKtv6ZQGuUk2vvrWj0GH8Cd0BgqlxvnHfwz3EV49CA9xdovKHgtDjEmHb5yV2gE="
