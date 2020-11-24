@@ -34,4 +34,5 @@ jobs:
               api_key:
                 secure: "amflL3T56ac1SeK2kMTULCeIUAtzfHwuy1CrDlnoZxMs64j8CV21S8IaFtpUYCi3mwNRRcV+6oYjVBwKobSlHlgPn/JTWiTWG/zI5VHBeY3zfYLQWadXlRisow7ioeY9XcMxkUTiG45nhyCa5Pdc03CJWL/YWHU5bp/oGm0GYlXt/yGQhRdmSNWIC798mVEllxNbg4BA/PcZ3Vb92GZC3pJDOaVoLw6Hq8qBJhQy5rzW8ZrbTHzjecGIpRCmbup/alnjP/EGF++HUymo5qxEpoHw0V1Fd62xM8DWSXm6rqRFDmZEfdOO6jUuSsR2uBgx/8P7yXpw6Gz42ZyjY/WZ/jqL0qW22CdskV3kWcByEEaQMFXUHzYz1PKiliPs+ks1Oe95qu9NCunVreGMI+eaw3q94etpW2QhiQBpJ3IHGNTDDuP/rsouQUmSvukuwevR2z1Od0AUfflxY0MKXl1OcRTQnfJ08ulpQ/c0XINuRhxtsQmn9KKaugXUgrLzDZjCEEhGHsBJ1d4aXWpeTAGyiNzFerVGRCKJwZDMqOXqRorxCah870w8JBon3QoLLoBp6gQEcJIo6SyfaA4YG7+0FMrNHR2SL5qav50qF9bFKD21bnv0QRLuwATbWQLqVGm5VGwaTuJhjFoen2IUO2x5rMusroz/1r+mfGYYcCKHtvA="
               app: titrack
-              on: main
+              on: 
+                branch: main
