@@ -16,8 +16,7 @@ class ProjectsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
         return response()->json(['status' => 'OK', 'projects' => Project::all()], 200);
     }
 
