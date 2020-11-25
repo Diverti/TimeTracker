@@ -27,7 +27,6 @@ jobs:
         - stage: Deploy
           script: skip
           deploy:
-            deploy:
               skip_cleanup: true
               provider: heroku
               strategy: api
