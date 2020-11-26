@@ -19,9 +19,10 @@ use Illuminate\Support\Facades\Route;
 });*/
 
 // Authentication
-Route::get('/', 'AuthController@index');
-Route::post('/register', 'AuthController@register');
-Route::post('/login',    'AuthController@login');
+//Route::get('/', 'AuthController@index');
+Route::get('/login',     'AuthController@index')->name('login');
+Route::post('/register', 'AuthController@register')->name('register');
+Route::post('/login',    'AuthController@login')->name('login');
 
 Route::middleware('auth:api')->group(function() {
     //Companies
@@ -38,11 +39,11 @@ Route::middleware('auth:api')->group(function() {
 
     //Tasks
     //Route::resource('tasks','TasksController');
-    Route::get('projects/{id}/tasks', 'TasksController@index');
-    Route::post('projects/{id}/tasks', 'TasksController@store');
-    Route::get('tasks/{id}', 'TasksController@show');
-    Route::put('tasks/{id}', 'TasksController@update');
-    Route::patch('tasks/{id}', 'TasksController@update');
-    Route::post('tasks/{id}/done', 'TasksController@done');
-    Route::delete('tasks/{id}', 'TasksController@destroy');
+    Route::get(   'projects/{id}/tasks',    'TasksController@index');
+    Route::post(  'projects/{id}/tasks',    'TasksController@store');
+    Route::get(   'tasks/{id}',             'TasksController@show');
+    Route::put(   'tasks/{id}',             'TasksController@update');
+    Route::patch( 'tasks/{id}',             'TasksController@update');
+    Route::post(  'tasks/{id}/done',        'TasksController@done');
+    Route::delete('tasks/{id}',             'TasksController@destroy');
 });
