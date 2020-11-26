@@ -95,7 +95,7 @@ class ProjectsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::find($request->user_id);
+        $user = User::find(auth()->user()->id);
         try{
             $project = Project::where('id',$id)->firstOrFail();
         } catch(\Illuminate\Database\Eloquent\ModelNotFoundException $e){
@@ -128,7 +128,7 @@ class ProjectsController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        $user = User::find($request->user_id);
+        $user = User::find(auth()->user()->id);
         try{
             $project = Project::where('id',$id)->firstOrFail();
         } catch(\Illuminate\Database\Eloquent\ModelNotFoundException $e){
