@@ -37,17 +37,17 @@ class GroupsController extends Controller
     {
         $group = new Group;
         $group->name = $request->name;
-        $group->created_by = $request->user_id;
+        $group->created_by = auth()->user()->id;
         $group->save();
 
-        $group->users()->sync($request->user_id);
+        $group->users()->sync(auth()->user()->id);
 
         return response($group,201);
     }
 
-    public function join(Request $request){
-        $group = Group::where('id',$request->group_id)->firstOrFail();
-        $group->users()->sync($request->user_id);
+    public function join(Request $request, $id){
+        $group = Group::where('id',$id)->firstOrFail();
+        $group->users()->sync(auth()->user()->id);
         return response('Joined.',200);
     }
 
@@ -88,7 +88,7 @@ class GroupsController extends Controller
     {
         try{
             $group = Group::where('id',$id)->firstOrFail();
-            if($request->user_id == $group->created_by){
+            if(auth()->user()->id == $group->created_by){
                 $group->name = $request->name;
                 if($request->created_by){
                     $group->created_by = $request->created_by;
@@ -113,7 +113,7 @@ class GroupsController extends Controller
     {
         try{
             $group = Group::where('id',$id)->firstOrFail();
-            if($request->user_id == $group->created_by){
+            if(auth()->user()->id == $group->created_by){
                 $group->delete();
                 return response('Group deleted.',200);
             } else{

@@ -42,4 +42,8 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Group', 'user_group');
     }
+
+    public function companies(){
+        return $this->hasMany('App\Company');
+    }
 }

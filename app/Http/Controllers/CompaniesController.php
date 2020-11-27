@@ -14,7 +14,7 @@ class CompaniesController extends Controller
      */
     public function index()
     {
-        return Company::all();
+        return Company::with('user')->get();
     }
 
     /**
@@ -37,6 +37,7 @@ class CompaniesController extends Controller
     {
         $company = new Company;
         $company->name = $request->name;
+        $company->created_by = auth()->user()->id;
         $company->save();
         return response($company,201);
     }
@@ -50,7 +51,7 @@ class CompaniesController extends Controller
     public function show($id)
     {
         try{
-            return Company::where('id',$id)->firstOrFail();
+            return Company::with('user'/*, 'user.groups'*/)->where('id',$id)->firstOrFail();
         } catch(\Illuminate\Database\Eloquent\ModelNotFoundException $e){
             return response('No company with such id.',404);
         }

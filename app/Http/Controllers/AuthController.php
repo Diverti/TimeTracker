@@ -15,7 +15,7 @@ class AuthController extends Controller
 {
     public function index(Request $request)
     {
-        return response()->json(['status' => 'OK'], 200);
+        return response()->json(['status' => 'OK', 'message' => 'You need to be logged in.'], 200);
     }
 
     /**
