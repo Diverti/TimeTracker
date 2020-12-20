@@ -16,22 +16,12 @@ class ProjectsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
+    public function getProjects() {
         return response()->json(['status' => 'OK', 'projects' => Project::all()], 200);
     }
 
-    public function forGroup($group_id){
+    public function getGroupProjects($group_id){
         return response()->json(['status' => 'OK', 'project' => Project::where('group_id', $group_id)->get()], 200);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -40,7 +30,7 @@ class ProjectsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function addProject(Request $request)
     {
         $project = new Project;
         $project->name = $request->name;
@@ -66,7 +56,7 @@ class ProjectsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function getProject($id)
     {
         try{
             return Project::where('id',$id)->firstOrFail();
@@ -76,24 +66,13 @@ class ProjectsController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function updateProject(Request $request, $id)
     {
         $user = User::find(auth()->user()->id);
         try{
@@ -126,7 +105,7 @@ class ProjectsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $id)
+    public function deleteProject(Request $request, $id)
     {
         $user = User::find(auth()->user()->id);
         try{

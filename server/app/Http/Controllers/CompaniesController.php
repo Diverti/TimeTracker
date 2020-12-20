@@ -12,19 +12,9 @@ class CompaniesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function getCompanies()
     {
         return Company::with('user')->get();
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -33,7 +23,7 @@ class CompaniesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function addCompany(Request $request)
     {
         $company = new Company;
         $company->name = $request->name;
@@ -48,7 +38,7 @@ class CompaniesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function getCompany($id)
     {
         try{
             return Company::with('user'/*, 'user.groups'*/)->where('id',$id)->firstOrFail();
@@ -58,24 +48,13 @@ class CompaniesController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function updateCompany(Request $request, $id)
     {
         try{
             $company = Company::where('id',$id)->firstOrFail();
@@ -93,7 +72,7 @@ class CompaniesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function deleteCompany($id)
     {
         try{
             $company = Company::where('id',$id)->firstOrFail();

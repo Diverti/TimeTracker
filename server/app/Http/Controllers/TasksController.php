@@ -15,19 +15,9 @@ class TasksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($project_id)
+    public function getTasks($project_id)
     {
         return Project::find($project_id)->tasks()->get();
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -36,7 +26,7 @@ class TasksController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $project_id)
+    public function addTask(Request $request, $project_id)
     {
         $task = new Task;
         $task->name = $request->name;
@@ -53,7 +43,7 @@ class TasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function getTask($id)
     {
         try{
             return Task::where('id',$id)->firstOrFail();
@@ -75,24 +65,13 @@ class TasksController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id) // kéne valaki aki létrehozta a projectet és csak az tudja updatelni
+    public function updateTask(Request $request, $id) // kéne valaki aki létrehozta a projectet és csak az tudja updatelni
     {
         try{
             $task = Task::where('id',$id)->firstOrFail();
@@ -115,7 +94,7 @@ class TasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function deleteTask($id)
     {
         try{
             Task::where('id',$id)->firstOrFail()->delete();

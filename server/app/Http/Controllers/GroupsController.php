@@ -12,19 +12,9 @@ class GroupsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function getGroups()
     {
         return Group::all();
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -33,7 +23,7 @@ class GroupsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function addGroup(Request $request)
     {
         $group = new Group;
         $group->name = $request->name;
@@ -45,7 +35,7 @@ class GroupsController extends Controller
         return response($group,201);
     }
 
-    public function join(Request $request, $id){
+    public function joinGroup(Request $request, $id){
         $group = Group::where('id',$id)->firstOrFail();
         $group->users()->sync(auth()->user()->id);
         return response('Joined.',200);
@@ -57,7 +47,7 @@ class GroupsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function getGroup($id)
     {
         try{
             return Group::where('id',$id)->firstOrFail();
@@ -67,24 +57,13 @@ class GroupsController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function updateGroup(Request $request, $id)
     {
         try{
             $group = Group::where('id',$id)->firstOrFail();
@@ -109,7 +88,7 @@ class GroupsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $id)
+    public function deleteGroup(Request $request, $id)
     {
         try{
             $group = Group::where('id',$id)->firstOrFail();

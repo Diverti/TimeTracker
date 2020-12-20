@@ -15,7 +15,11 @@ class AuthController extends Controller
 {
     public function index(Request $request)
     {
-        return response()->json(['status' => 'OK', 'message' => 'You need to be logged in.'], 200);
+        if (auth()->user()) {
+            return response()->json(['status' => 'OK', 'user' => Auth::user()], 200);
+        } else {
+            return response()->json(['status' => 'error', 'error' => 'Unauthorised'], 401);
+        }
     }
 
     /**
@@ -49,6 +53,11 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
+
+        $validatedData = $request->validate([
+            'email' => 'required',
+            'password' => 'required',
+        ]);
 
         if (auth()->attempt($credentials)) {
             $token = Auth::user()->createToken(token)->accessToken;
