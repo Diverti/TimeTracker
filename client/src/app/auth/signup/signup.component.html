@@ -1,0 +1,68 @@
+<form [formGroup]="signupForm" fxLayoutAlign="stretch" fxLayout="column" (ngSubmit)="signup(signupForm)" [ngClass]="{'up': password.value.length > 0}" novalidate>
+    <mat-form-field>
+        <input
+            matInput
+            type="text"
+            placeholder="Your name"
+            formControlName="name"
+            required
+            appNameFormat
+        >
+        <mat-error>The field is required! Minimum 5 characters!</mat-error>
+    </mat-form-field>
+    <mat-form-field hintLabel="Hint: hello@titrack.eu">
+        <input
+            matInput
+            type="email"
+            placeholder="E-mail address"
+            formControlName="email"
+            required
+        >
+        <mat-error>Please insert a real e-mail address!</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input
+            matInput
+            #password
+            type="password"
+            placeholder="Password"
+            color="primary"
+            formControlName="password"
+            required
+        >
+        <mat-error>The password is required, check the format!</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input
+            matInput
+            type="password"
+            placeholder="Password confirm"
+            formControlName="passwordConfirm"
+            required>
+        <mat-error>The given passwords are not the same!</mat-error>
+    </mat-form-field>
+    <div *ngIf="password.value.length > 0">
+        <mat-label>Password strength:</mat-label>
+        <mat-password-strength
+            #passwordStrength
+            [password]="password.value"
+        >
+        </mat-password-strength>
+        <mat-password-strength-info
+            [passwordComponent]="passwordStrength"
+            lowerCaseCriteriaMsg="contains at least one lower key"
+            upperCaseCriteriaMsg="contains at least one upper key"
+            digitsCriteriaMsg="contains at least one number"
+            specialCharsCriteriaMsg="contains at least one special character"
+            minCharsCriteriaMsg="it's minimum 8 characters long"
+        >
+        </mat-password-strength-info>
+	</div>
+    <button
+        mat-raised-button
+        color="primary"
+        style="margin:15px 0 0 0"
+    >
+        Register
+    </button>
+</form>

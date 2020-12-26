@@ -1,0 +1,7 @@
+<h2>Time trackers:</h2>
+<div class="issue" *ngFor="let issue of (is.issues$ | async)">
+	<app-issue [issue]="issue"></app-issue>
+</div>
+<button mat-mini-fab color="accent" class="add-button" (click)="openAddIssueDialog()" matTooltip="New tracker">
+	<mat-icon>add</mat-icon>
+</button>

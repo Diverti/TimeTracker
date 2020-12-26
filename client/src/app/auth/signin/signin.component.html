@@ -1,0 +1,30 @@
+<form [formGroup]="signinForm" fxLayoutAlign="stretch" fxLayout="column" (ngSubmit)="signin(signinForm)" novalidate>
+    <mat-form-field hintLabel="Email like: hello@titrack.eu">
+        <input
+            matInput
+            type="email"
+            placeholder="E-mail"
+            formControlName="email"
+            required
+        >
+        <mat-error>Type in your email address!</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input
+            matInput
+            type="password"
+            placeholder="Password"
+            color="primary"
+            formControlName="password"
+            required
+        >
+        <mat-error>The good password is a must!</mat-error>
+    </mat-form-field>
+    <button
+        mat-raised-button
+        color="primary"
+        style="margin:15px 0 0 0"
+    >
+        Login
+    </button>
+</form>
