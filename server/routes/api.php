@@ -25,8 +25,9 @@ Route::post('/login',    'AuthController@login');
 
 Route::middleware('auth:api')->group(function() {
     //User
-    Route::get( 'profile',  'AuthController@getCurrentUser');
+    Route::get( 'user',  'AuthController@getCurrentUser');
     Route::post('logout',   'AuthController@logout');
+    Route::get('users',     'UsersController@getUsers');
 
     //Companies
     Route::get(     'companies',        'CompaniesController@getCompanies');
@@ -57,7 +58,8 @@ Route::middleware('auth:api')->group(function() {
     Route::post(    'projects/{id}/done',   'ProjectsController@done');
 
     //Tasks
-    Route::get(     'projects/{id}/tasks',    'TasksController@getTasks');
+    Route::get(     'tasks',                  'TasksController@getTasks');
+    Route::get(     'projects/{id}/tasks',    'TasksController@getTasksOfProject');
     Route::post(    'projects/{id}/tasks',    'TasksController@addTask');
     Route::get(     'tasks/{id}',             'TasksController@getTask');
     Route::put(     'tasks/{id}',             'TasksController@updateTask');

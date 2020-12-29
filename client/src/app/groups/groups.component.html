@@ -1,0 +1,4 @@
+<h2>Groups:</h2>
+<div class="group" *ngFor="let group of (gs.groups$ | async)">
+	<app-group [group]="group"></app-group>
+</div>

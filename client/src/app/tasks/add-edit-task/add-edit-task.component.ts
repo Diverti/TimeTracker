@@ -7,19 +7,19 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
-import { IssueService } from '@core/services/issue.service';
+import { TaskService } from '@core/services/task.service';
 import { NotificationService } from '@core/services/notification.service';
 
-import { Issue } from '@core/interfaces/issue.interface';
+import { Task } from '@core/interfaces/project.interface';
 import { Label } from '@core/interfaces/label.interface';
 
 @Component({
-  selector: 'app-add-edit-issue',
-  templateUrl: './add-edit-issue.component.html',
-  styleUrls: ['./add-edit-issue.component.scss']
+  selector: 'app-add-edit-task',
+  templateUrl: './add-edit-task.component.html',
+  styleUrls: ['./add-edit-task.component.scss']
 })
-export class AddEditIssueComponent implements OnInit {
-  issueForm: FormGroup;
+export class AddEditTaskComponent implements OnInit {
+  taskForm: FormGroup;
   separatorKeysCodes: number[] = [ENTER, COMMA];
   labelCtrl = new FormControl();
   filteredLabels: Observable<string[]>;
@@ -33,12 +33,12 @@ export class AddEditIssueComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    public dialogRef: MatDialogRef<AddEditIssueComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Issue,
-    public is: IssueService,
+    public dialogRef: MatDialogRef<AddEditTaskComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: Task,
+    public is: TaskService,
     private ns: NotificationService
   ) {
-    this.issueForm = this.formBuilder.group({
+    this.taskForm = this.formBuilder.group({
       title: [null, Validators.required],
       description: [null, Validators.required],
       place: null,
@@ -57,9 +57,9 @@ export class AddEditIssueComponent implements OnInit {
         this.allLabels.push(value['text']);
       });
       if (this.data) {
-        this.issueForm.disable();
+        this.taskForm.disable();
         this.labelCtrl.disable();
-        this.issueForm.patchValue(this.data);
+        this.taskForm.patchValue(this.data);
         this.data.labels.map(l => {
           this.labels.push(l.text);
         });
@@ -67,12 +67,12 @@ export class AddEditIssueComponent implements OnInit {
     });
   }
 
-  addIssue(form: FormGroup) {
+  addTask(form: FormGroup) {
     if (form.valid) {
       form.patchValue({'labels': this.lids})
       console.log(form.value);
-      this.is.addIssue(<Issue>form.value);
-      this.issueForm.reset();
+      this.is.addTask(<Task>form.value);
+      this.taskForm.reset();
     }
     else {
       this.ns.show('HIBA! Adatok nem megfelelőek!');

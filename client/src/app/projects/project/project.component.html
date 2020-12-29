@@ -1,0 +1,16 @@
+<mat-accordion multi>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>#{{ project.id }} - {{ project.name }}</mat-panel-title>
+            <mat-panel-description>
+                <span><mat-icon>schedule</mat-icon><span class="label">{{ project.created_at }}</span></span>
+                <span><mat-icon>schedule</mat-icon>Due: <span class="label">{{ project.due_date }}</span></span>
+                <span><mat-icon>tick</mat-icon>Done? <span class="label">{{ project.is_done ? "Yes" : "No" }}</span></span>
+                <button mat-mini-fab color="primary" class="edit-button" (click)="openEditProjectDialog(project)" matTooltip="Edit Project">
+                    <mat-icon>edit</mat-icon>
+                </button>
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        Company: {{ project.company_id }}
+    </mat-expansion-panel>
+</mat-accordion>

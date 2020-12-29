@@ -1,11 +1,10 @@
 import { Label } from '@core/interfaces/label.interface';
 import { Message } from '@core/interfaces/message.interface';
 
-export interface Issue {
+export interface Project {
     id?: number;
-    title: string;
-    description: string;
-    place: string;
+    name: string;
+    due_date: string;
     labels?: Label[];
     status?: 'NEW' | 'DOING' | 'DONE';
     user?: number;

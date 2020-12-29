@@ -23,7 +23,7 @@ export class AnonymGuard implements CanActivate {
             map(s => !(!!s)),
             tap(loggedOut => {
                 if (!loggedOut) {
-                    console.error('Hozzáférés megtagadva!');
+                    console.error('Error! Access denied!');
                     this.router.navigate(['/404']);
                     return false;
                 }

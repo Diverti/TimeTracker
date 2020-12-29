@@ -10,12 +10,23 @@ use DateTime;
 
 class TasksController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function getTasks($project_id)
+    public function getTasks()
+    {
+        return Task::all();
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getTasksOfProject($project_id)
     {
         return Project::find($project_id)->tasks()->get();
     }

@@ -8,12 +8,14 @@ import { NotificationService } from '@core/services/notification.service';
 import { User } from '@core/interfaces/user.interface';
 
 import { baseUrl } from 'src/environments/environment';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   isLogin$ = new BehaviorSubject<boolean>(this.hasToken());
+  currentUser$ = new BehaviorSubject<any>(null);
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -25,15 +27,26 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private ns: NotificationService
-  ) { }
+    private ns: NotificationService,
+  ) {
+    if(this.hasToken()) {
+      const header = new HttpHeaders().set(
+        'Authorization', `Bearer ${localStorage.getItem('token')}`
+      );
+      this.http.get<User>(`${baseUrl}/user`, {headers: header}).subscribe(
+        userInfo => {
+          this.currentUser$.next(userInfo['user']);
+        }
+      )
+    }
+    
+   }
 
   isLoggedIn(): Observable<boolean> {
     return this.isLogin$.asObservable();
   }
 
   register(user: User): void {
-    console.log(user);
     
     this.http.post<User>(`${baseUrl}/register`, user, this.httpOptions).subscribe(
       data => {
@@ -46,21 +59,24 @@ export class AuthService {
     );
   }
 
-  login(user: User): void {
-    console.log(user);
-    
+  login(user: User): void {    
     this.http.post<User>(`${baseUrl}/login`, user, this.httpOptions).subscribe(
-      data => {
-        localStorage.setItem('token', data['token']);
+      userInfo => {
+        localStorage.setItem('token', userInfo['token']);
+        this.currentUser$.next(userInfo['user']);
         this.isLogin$.next(true);
         this.ns.show('Successful login!');
-        this.router.navigate(['/issues/active']);
+        this.router.navigate(['/groups']);
       },
       error => {
         this.ns.show('Error! Login was unsuccessful!');
         console.error(error);
       }
     );
+  }
+
+  getCurrentUser(): BehaviorSubject<any> {
+    return this.currentUser$;
   }
 
   logout(): void {

@@ -1,0 +1,13 @@
+<mat-accordion multi>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>#{{ task.id }} - {{ task.name }}</mat-panel-title>
+            <mat-panel-description>
+                <button mat-mini-fab color="primary" class="edit-button" (click)="openEditTaskDialog(task)" matTooltip="Jegy szerkesztése">
+                    <mat-icon>edit</mat-icon>
+                </button>
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+
+    </mat-expansion-panel>
+</mat-accordion>

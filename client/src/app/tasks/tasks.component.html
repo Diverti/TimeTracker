@@ -1,0 +1,4 @@
+<h2>Tasks:</h2>
+<div class="task" *ngFor="let task of (ts.tasks$ | async)">
+	<app-task [task]="task"></app-task>
+</div>

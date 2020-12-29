@@ -17,11 +17,11 @@ class ProjectsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function getProjects() {
-        return response()->json(['status' => 'OK', 'projects' => Project::all()], 200);
+        return Project::all();
     }
 
     public function getGroupProjects($group_id){
-        return response()->json(['status' => 'OK', 'project' => Project::where('group_id', $group_id)->get()], 200);
+        return Project::where('group_id', $group_id)->get();
     }
 
     /**
@@ -40,7 +40,7 @@ class ProjectsController extends Controller
         $project->company_id = $request->company_id;
         $project->save();
 
-        return response($project, 200);
+        return $project;
     }
 
     public function takeProject(Request $request, $project_id){

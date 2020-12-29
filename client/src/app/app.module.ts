@@ -30,14 +30,27 @@ import { NameFormatDirective } from '@core/directives/nameformat.directive';
 
 import { AppComponent } from './app.component';
 import { AuthComponent } from './auth/auth.component';
-	import { SigninComponent } from './auth/signin/signin.component';
-	import { SignupComponent } from './auth/signup/signup.component';
+import { SigninComponent } from './auth/signin/signin.component';
+import { SignupComponent } from './auth/signup/signup.component';
 import { MenuComponent } from './menu/menu.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ProfileComponent } from './profile/profile.component';
-import { IssuesComponent } from './issues/issues.component';
+
+import { GroupsComponent } from './groups/groups.component'
+import { GroupComponent } from './groups/group/group.component';
+
+import { ProjectComponent } from './projects/project/project.component';
+import { ProjectsComponent } from './projects/projects.component';
+
+import { UsersComponent } from './users/users.component';
+import { UserComponent } from './users/user/user.component';
+
+import { TaskComponent } from './tasks/task/task.component';
+import { TasksComponent } from './tasks/tasks.component';
+
+/*import { IssuesComponent } from './issues/issues.component';
 	import { IssueComponent } from './issues/issue/issue.component';
-		import { AddEditIssueComponent } from './issues/add-edit-issue/add-edit-issue.component';
+		import { AddEditIssueComponent } from './issues/add-edit-issue/add-edit-issue.component';*/
 
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
@@ -53,9 +66,17 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 		MenuComponent,
 		SettingsComponent,
 		ProfileComponent,
-		IssuesComponent,
+		UsersComponent,
+			UserComponent,
+		TasksComponent,
+			TaskComponent,
+		ProjectsComponent,
+			ProjectComponent,
+		GroupsComponent,	
+			GroupComponent,	
+		/*IssuesComponent,
 			IssueComponent,
-				AddEditIssueComponent,
+				AddEditIssueComponent,*/
 			//IssueDialogComponent
 		PagenotfoundComponent
 	],

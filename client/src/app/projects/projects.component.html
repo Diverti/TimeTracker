@@ -1,0 +1,4 @@
+<h2>Projects:</h2>
+<div class="project" *ngFor="let project of (ps.projects$ | async)">
+	<app-project [project]="project"></app-project>
+</div>

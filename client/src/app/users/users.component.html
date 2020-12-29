@@ -1,0 +1,4 @@
+<h2>Users:</h2>
+<div class="user" *ngFor="let user of (us.users$ | async)">
+	<app-user [user]="user"></app-user>
+</div>
