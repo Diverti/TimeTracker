@@ -60,9 +60,6 @@ export class AddEditTaskComponent implements OnInit {
         this.taskForm.disable();
         this.labelCtrl.disable();
         this.taskForm.patchValue(this.data);
-        this.data.labels.map(l => {
-          this.labels.push(l.text);
-        });
       }
     });
   }

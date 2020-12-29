@@ -2,3 +2,6 @@
 <div class="task" *ngFor="let task of (ts.tasks$ | async)">
 	<app-task [task]="task"></app-task>
 </div>
+<button mat-mini-fab color="accent" class="add-button" (click)="openAddTaskDialog()" matTooltip="New Task">
+	<mat-icon>add</mat-icon>
+</button>

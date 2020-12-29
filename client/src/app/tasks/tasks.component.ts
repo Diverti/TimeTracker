@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Observable, Subscription } from 'rxjs';
 
 import { TaskService } from '@core/services/task.service';
-//import { AddEditTaskComponent } from './add-edit-task/add-edit-task.component';
+import { AddEditTaskComponent } from './add-edit-task/add-edit-task.component';
 
 import { Task } from '@core/interfaces/task.interface';
 
@@ -24,9 +24,9 @@ export class TasksComponent implements OnInit {
 	}
 
 	openAddTaskDialog(): void {
-		/*const dialogRef = this.dialog.open(AddEditTaskComponent, {
+		const dialogRef = this.dialog.open(AddEditTaskComponent, {
 			width: '1000px'
-		})*/
+		})
 	}
 
 }
