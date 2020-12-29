@@ -66,7 +66,7 @@ export class AuthService {
         this.currentUser$.next(userInfo['user']);
         this.isLogin$.next(true);
         this.ns.show('Successful login!');
-        this.router.navigate(['/groups']);
+        this.router.navigate(['/profile']);
       },
       error => {
         this.ns.show('Error! Login was unsuccessful!');

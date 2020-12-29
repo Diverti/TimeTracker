@@ -10,7 +10,7 @@ import { map, startWith } from 'rxjs/operators';
 import { TaskService } from '@core/services/task.service';
 import { NotificationService } from '@core/services/notification.service';
 
-import { Task } from '@core/interfaces/project.interface';
+import { Task } from '@core/interfaces/task.interface';
 import { Label } from '@core/interfaces/label.interface';
 
 @Component({
