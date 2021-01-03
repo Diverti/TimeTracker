@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Project;
 use App\Task;
+use App\User;
 use Carbon\Carbon;
 use DateTime;
 
@@ -18,7 +19,12 @@ class TasksController extends Controller
      */
     public function getTasks()
     {
-        return Task::all();
+        $tasks = Task::all();
+        foreach($tasks as $task){
+            $task->due_date = Carbon::parse($task->due_date);
+            $task->due_date->toDateTimeLocalString();
+        }
+        return $tasks;
     }
 
     /**
@@ -41,8 +47,10 @@ class TasksController extends Controller
     {
         $task = new Task;
         $task->name = $request->name;
+        $task->description = $request->description;
         $task->due_date = Carbon::parse($request->due_date);
         $task->project_id = $project_id;
+        $task->created_by = auth()->user()->id;
         $task->is_done = 0;
         $task->save();
         return response($task, 201);
@@ -57,7 +65,10 @@ class TasksController extends Controller
     public function getTask($id)
     {
         try{
-            return Task::where('id',$id)->firstOrFail();
+            $task = Task::where('id',$id)->firstOrFail();
+            $task->due_date = new DateTime($task->due_date);
+            $task->due_date->format('Y-m-d\TH:i');
+            return $task;
         } catch(\Illuminate\Database\Eloquent\ModelNotFoundException $e){
             return response('No task with such id.',404);
         }

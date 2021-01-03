@@ -5,7 +5,6 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { NotificationService } from '@core/services/notification.service';
 
 import { Task } from '@core/interfaces/task.interface';
-import { Label } from '@core/interfaces/label.interface';
 
 import { baseUrl } from 'src/environments/environment';
 
@@ -14,7 +13,6 @@ import { baseUrl } from 'src/environments/environment';
 })
 export class TaskService {
     tasks$ = new BehaviorSubject<Task[]>([]);
-    labels: Label[] = [];
 
     constructor(
         private http: HttpClient,
@@ -31,47 +29,20 @@ export class TaskService {
             });
     }
 
-    addTask(issue: Task) {
+    addTask(task: Task) {
         const header = new HttpHeaders().set(
             'Authorization', `Bearer ${localStorage.getItem('token')}`
         );
-        this.http.post<Task>(`${baseUrl}/tasks`, issue, {headers: header})
+        this.http.post<Task>(`${baseUrl}/projects/2/tasks`, task, {headers: header})
         .subscribe(
             ni => {
                 this.tasks$.next(this.tasks$.getValue().concat([ni]));
-                this.ns.show('Hibabejelentés hozzáadva!');
+                this.ns.show('Feladat hozzáadva!');
             },
             error => {
-                this.ns.show('HIBA! Hibabejelentés hozzáadása sikertelen!');
+                this.ns.show('HIBA! Feladat hozzáadása sikertelen!');
                 console.error(error);
             }
         );
     }
-
-    async getLabels(): Promise<Label[]> {
-        const header = new HttpHeaders().set(
-            'Authorization', `Bearer ${localStorage.getItem('token')}`
-        );
-        const labels: Label[] = await this.http.get<Label[]>(`${baseUrl}/labels`, {headers: header}).toPromise();
-        return labels;
-    }
-
-    async addLabel(label: string) {        
-        const header = new HttpHeaders().set(
-            'Authorization', `Bearer ${localStorage.getItem('token')}`
-        );        
-        const id = await this.http.post<number>(`${baseUrl}/labels`, {'text': label}, {headers: header}).toPromise()
-        .then(
-            l => {
-                this.ns.show('Új cimke hozzáadva!');
-                return l['id'];
-            })
-            .catch(error => {
-                this.ns.show('HIBA! Új cimke hozzáadása sikertelen!');
-                console.error(error);
-            }
-        );
-        return id;
-    }
-
 }

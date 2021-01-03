@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -21,6 +21,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AuthGuard } from '@core/guards/auth.guard';
@@ -45,8 +46,9 @@ import { ProjectsComponent } from './projects/projects.component';
 import { UsersComponent } from './users/users.component';
 import { UserComponent } from './users/user/user.component';
 
-import { TaskComponent } from './tasks/task/task.component';
 import { TasksComponent } from './tasks/tasks.component';
+	import { TaskComponent } from './tasks/task/task.component';
+		import { AddEditTaskComponent } from './tasks/add-edit-task/add-edit-task.component';
 
 /*import { IssuesComponent } from './issues/issues.component';
 	import { IssueComponent } from './issues/issue/issue.component';
@@ -57,6 +59,9 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 //import { IssueDialogComponent } from './issues/issue/issue.component';
 
 @NgModule({
+	schemas: [
+		CUSTOM_ELEMENTS_SCHEMA
+	],
 	declarations: [
 		NameFormatDirective,
 		AppComponent,
@@ -70,6 +75,7 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 			UserComponent,
 		TasksComponent,
 			TaskComponent,
+				AddEditTaskComponent,
 		ProjectsComponent,
 			ProjectComponent,
 		GroupsComponent,	
@@ -87,6 +93,7 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 		ReactiveFormsModule,
 		HttpClientModule,
 		FlexLayoutModule,
+		MatFormFieldModule,
 		MatToolbarModule,
 		MatSidenavModule,
 		MatCardModule,
