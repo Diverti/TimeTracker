@@ -1,5 +1,6 @@
-<h2>Új hibabejelentés hozzáadása</h2>
-<form [formGroup]="taskForm" (ngSubmit)="addTask(taskForm)" novalidate>
+<h2 *ngIf="isAddMode">Új feladat hozzáadása</h2>
+<h2 *ngIf="!isAddMode">Feladat szerkesztése</h2>
+<form [formGroup]="taskForm" (ngSubmit)="addEditTask(taskForm)" novalidate>
 	<div fxLayout="row wrap" fxLayoutAlign="start start">
 		<mat-form-field appearance="fill" fxFlex="100">
 			<mat-label>Feladat neve</mat-label>

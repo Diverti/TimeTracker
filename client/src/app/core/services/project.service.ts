@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { NotificationService } from '@core/services/notification.service';
@@ -14,7 +14,6 @@ import { baseUrl } from 'src/environments/environment';
 })
 export class ProjectService {
     projects$ = new BehaviorSubject<Project[]>([]);
-    labels: Label[] = [];
 
     constructor(
         private http: HttpClient,
@@ -29,6 +28,14 @@ export class ProjectService {
             .subscribe(i => {
                 this.projects$.next(i);
             });
+    }
+
+    getProject(id: number): Observable<Project> {
+        const header = new HttpHeaders().set(
+            'Authorization', `Bearer ${localStorage.getItem('token')}`
+        );
+
+        return this.http.get<Project>(`${baseUrl}/projects/${id}`, {headers: header});
     }
 
     addProject(project: Project) {
@@ -46,32 +53,6 @@ export class ProjectService {
                 console.error(error);
             }
         );
-    }
-
-    async getLabels(): Promise<Label[]> {
-        const header = new HttpHeaders().set(
-            'Authorization', `Bearer ${localStorage.getItem('token')}`
-        );
-        const labels: Label[] = await this.http.get<Label[]>(`${baseUrl}/labels`, {headers: header}).toPromise();
-        return labels;
-    }
-
-    async addLabel(label: string) {        
-        const header = new HttpHeaders().set(
-            'Authorization', `Bearer ${localStorage.getItem('token')}`
-        );        
-        const id = await this.http.post<number>(`${baseUrl}/labels`, {'text': label}, {headers: header}).toPromise()
-        .then(
-            l => {
-                this.ns.show('Új cimke hozzáadva!');
-                return l['id'];
-            })
-            .catch(error => {
-                this.ns.show('HIBA! Új cimke hozzáadása sikertelen!');
-                console.error(error);
-            }
-        );
-        return id;
     }
 
 }

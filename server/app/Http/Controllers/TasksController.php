@@ -21,8 +21,8 @@ class TasksController extends Controller
     {
         $tasks = Task::all();
         foreach($tasks as $task){
-            $task->due_date = Carbon::parse($task->due_date);
-            $task->due_date->toDateTimeLocalString();
+            $task->due_date = date_create($task->due_date);
+            $task->due_date = date_format($task->due_date, 'Y-m-d\TH:i');
         }
         return $tasks;
     }
@@ -34,7 +34,12 @@ class TasksController extends Controller
      */
     public function getTasksOfProject($project_id)
     {
-        return Project::find($project_id)->tasks()->get();
+        $tasks = Project::find($project_id)->tasks()->get();
+        foreach($tasks as $task){
+            $task->due_date = date_create($task->due_date);
+            $task->due_date = date_format($task->due_date, 'Y-m-d\TH:i');
+        }
+        return $tasks;
     }
 
     /**
@@ -66,8 +71,8 @@ class TasksController extends Controller
     {
         try{
             $task = Task::where('id',$id)->firstOrFail();
-            $task->due_date = new DateTime($task->due_date);
-            $task->due_date->format('Y-m-d\TH:i');
+            $task->due_date = date_create($task->due_date);
+            $task->due_date = date_format($task->due_date, 'Y-m-d\TH:i');
             return $task;
         } catch(\Illuminate\Database\Eloquent\ModelNotFoundException $e){
             return response('No task with such id.',404);
@@ -97,12 +102,10 @@ class TasksController extends Controller
     {
         try{
             $task = Task::where('id',$id)->firstOrFail();
-            if($task->name)
-                $task->name = $request->name;
-            if($task->project_id)
-                $task->project_id = $request->project_id;
-            if($task->due_date)
-                $task->due_date = Carbon::parse($request->due_date);
+            $task->name = $request->name;
+            $task->due_date = Carbon::parse($request->due_date);
+            $task->description = $request->description;
+            
             $task->save();
             return response($task, 200);
         } catch(\Illuminate\Database\Eloquent\ModelNotFoundException $e){

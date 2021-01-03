@@ -4,6 +4,7 @@ import { Observable, Subscription } from 'rxjs';
 
 import { TaskService } from '@core/services/task.service';
 import { AddEditTaskComponent } from './add-edit-task/add-edit-task.component';
+import { ActivatedRoute } from '@angular/router';
 
 import { Task } from '@core/interfaces/task.interface';
 
@@ -16,11 +17,14 @@ export class TasksComponent implements OnInit {
 
 	constructor(
 		public dialog: MatDialog,
-		public ts: TaskService
+		public ts: TaskService,
+		private route: ActivatedRoute,
+    	private projectService: TaskService
 	) { }
 
 	ngOnInit(): void {
-		this.ts.getTasks();
+		const id = +this.route.snapshot.paramMap.get('id');
+		this.ts.getTasksForProject(id);
 	}
 
 	openAddTaskDialog(): void {
@@ -28,5 +32,4 @@ export class TasksComponent implements OnInit {
 			width: '1000px'
 		})
 	}
-
 }

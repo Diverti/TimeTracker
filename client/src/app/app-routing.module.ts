@@ -2,6 +2,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { UsersComponent } from './users/users.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { ProjectsComponent } from './projects/projects.component';
+import { ProjectShowComponent } from './projects/projectShow/projectShow.component';
 import { GroupsComponent } from './groups/groups.component';
 
 import { NgModule } from '@angular/core';
@@ -19,6 +20,7 @@ const routes: Routes = [
 	{ path: 'groups', component: GroupsComponent, canActivate: [AuthGuard] },
 	{ path: 'users', component: UsersComponent, canActivate: [AuthGuard] },
 	{ path: 'projects', component: ProjectsComponent, canActivate: [AuthGuard] },
+	{ path: 'projects/:id', component: ProjectShowComponent, canActivate: [AuthGuard] },
 	{ path: 'tasks', component: TasksComponent, canActivate: [AuthGuard] },
 	{ path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
 	{ path: '404', component: PagenotfoundComponent },

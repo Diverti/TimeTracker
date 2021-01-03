@@ -42,6 +42,7 @@ import { GroupComponent } from './groups/group/group.component';
 
 import { ProjectComponent } from './projects/project/project.component';
 import { ProjectsComponent } from './projects/projects.component';
+import { ProjectShowComponent } from './projects/projectShow/projectShow.component';
 
 import { UsersComponent } from './users/users.component';
 import { UserComponent } from './users/user/user.component';
@@ -78,6 +79,7 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 				AddEditTaskComponent,
 		ProjectsComponent,
 			ProjectComponent,
+			ProjectShowComponent,
 		GroupsComponent,	
 			GroupComponent,	
 		/*IssuesComponent,

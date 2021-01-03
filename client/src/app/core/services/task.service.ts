@@ -13,27 +13,28 @@ import { baseUrl } from 'src/environments/environment';
 })
 export class TaskService {
     tasks$ = new BehaviorSubject<Task[]>([]);
+    tasks: Task[] = [];
 
     constructor(
         private http: HttpClient,
         private ns: NotificationService
     ) {}
 
-    getTasks(): void {
+    getTasksForProject(id: number): void {
         const header = new HttpHeaders().set(
             'Authorization', `Bearer ${localStorage.getItem('token')}`
         );
-        this.http.get<Task[]>(`${baseUrl}/tasks`, {headers: header})
+        this.http.get<Task[]>(`${baseUrl}/projects/${id}/tasks`, {headers: header})
             .subscribe(i => {
                 this.tasks$.next(i);
             });
     }
 
-    addTask(task: Task) {
+    addTask(task: Task, id: number) {
         const header = new HttpHeaders().set(
             'Authorization', `Bearer ${localStorage.getItem('token')}`
         );
-        this.http.post<Task>(`${baseUrl}/projects/2/tasks`, task, {headers: header})
+        this.http.post<Task>(`${baseUrl}/projects/${id}/tasks`, task, {headers: header})
         .subscribe(
             ni => {
                 this.tasks$.next(this.tasks$.getValue().concat([ni]));
@@ -45,4 +46,23 @@ export class TaskService {
             }
         );
     }
+
+    async updateTask(task: Task, id: number){
+        const header = new HttpHeaders().set(
+            'Authorization', `Bearer ${localStorage.getItem('token')}`
+        );
+        const idd = this.http.patch<Task>(`${baseUrl}/tasks/${id}`, task, {headers: header}).toPromise()
+        .then(
+            ni => {
+                this.ns.show('Feladat módosítva!');
+                this.tasks[this.tasks.findIndex(task => id === task.id)] = task;
+            },
+            error => {
+                this.ns.show('HIBA! Feladat hozzáadása sikertelen!');
+                console.error(error);
+            }
+        );
+        return idd;
+    }
+
 }

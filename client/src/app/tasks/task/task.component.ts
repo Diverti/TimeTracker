@@ -16,6 +16,10 @@ export class TaskComponent {
 
   constructor(private dialog: MatDialog) { }
 
+  ngOnChanges(){
+    console.log(this.task.name);
+  }
+
   openEditTaskDialog(task: Task): void {
 	    const dialogRef = this.dialog.open(AddEditTaskComponent, {
       width: '1000px',
