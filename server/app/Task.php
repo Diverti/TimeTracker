@@ -12,7 +12,7 @@ class Task extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'is_done', 'due_date',
+        'name', 'is_done', 'due_date', 'description'
     ];
 
     //kapcsolótábla, N to N

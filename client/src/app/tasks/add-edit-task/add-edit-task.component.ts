@@ -3,13 +3,9 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatAutocompleteSelectedEvent, MatAutocomplete } from '@angular/material/autocomplete';
-import { MatChipInputEvent } from '@angular/material/chips';
-import { from, Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { TaskService } from '@core/services/task.service';
-import { TasksComponent } from '../tasks.component';
 import { NotificationService } from '@core/services/notification.service';
 
 import { Task } from '@core/interfaces/task.interface';
@@ -43,12 +39,12 @@ export class AddEditTaskComponent implements OnInit {
 
   ngOnInit(): void {
     this.project_id = +this.router.url.split('/').pop();
-      if (this.data) {
-        this.taskForm.patchValue(this.data);
-        this.isAddMode = false;
-      } else {
-        this.isAddMode = true;
-      }
+    if (this.data) {
+      this.taskForm.patchValue(this.data);
+      this.isAddMode = false;
+    } else {
+      this.isAddMode = true;
+    }
   }
 
   addEditTask(form: FormGroup) {
@@ -62,7 +58,6 @@ export class AddEditTaskComponent implements OnInit {
       }
       
       setTimeout(() => {this.dialogRef.close()},500);
-      //this.taskForm.reset();
     }
     else {
       this.ns.show('HIBA! Adatok nem megfelelőek!');

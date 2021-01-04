@@ -12,15 +12,14 @@ class Project extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'due_date', 'is_done', 'group_id', 'company_id', //group_id, company_id
+        'name', 'due_date', 'is_done', 'group_id', 'company_id', 'description' //group_id, company_id
     ];
 
     public function company() {
-        return $this->hasOne('App\Company');
+        return $this->belongsTo('App\Company');
     }
 
-    public function group()
-    {
+    public function group() {
         return $this->hasOne('App\Group');
     }
 

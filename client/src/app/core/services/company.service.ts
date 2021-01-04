@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { NotificationService } from '@core/services/notification.service';
 
-import { User } from '@core/interfaces/user.interface';
+import { Company } from '@core/interfaces/Company.interface';
 import { Label } from '@core/interfaces/label.interface';
 
 import { baseUrl } from 'src/environments/environment';
@@ -12,37 +12,36 @@ import { baseUrl } from 'src/environments/environment';
 @Injectable({
 	providedIn: 'root'
 })
-export class UserService {
-    users$ = new BehaviorSubject<User[]>([]);
-    labels: Label[] = [];
+export class CompanyService {
+    companies$ = new BehaviorSubject<Company[]>([]);
 
     constructor(
         private http: HttpClient,
         private ns: NotificationService
     ) {}
 
-    getUsers(): void {
+    getCompanies(): void {        
         const header = new HttpHeaders().set(
             'Authorization', `Bearer ${localStorage.getItem('token')}`
         );
-        this.http.get<User[]>(`${baseUrl}/users`, {headers: header})
+        this.http.get<Company[]>(`${baseUrl}/companies`, {headers: header})
             .subscribe(i => {
-                this.users$.next(i);
+                this.companies$.next(i);
             });
     }
-    
-    addUser(user: User) {
+
+    addCompany(company: Company) {
         const header = new HttpHeaders().set(
             'Authorization', `Bearer ${localStorage.getItem('token')}`
         );
-        this.http.post<User>(`${baseUrl}/users`, user, {headers: header})
+        this.http.post<Company>(`${baseUrl}/companies`, company, {headers: header})
         .subscribe(
             ni => {
-                this.users$.next(this.users$.getValue().concat([ni]));
-                this.ns.show('Hibabejelentés hozzáadva!');
+                this.companies$.next(this.companies$.getValue().concat([ni]));
+                this.ns.show('Cég hozzáadva!');
             },
             error => {
-                this.ns.show('HIBA! Hibabejelentés hozzáadása sikertelen!');
+                this.ns.show('HIBA! Cég hozzáadása sikertelen!');
                 console.error(error);
             }
         );

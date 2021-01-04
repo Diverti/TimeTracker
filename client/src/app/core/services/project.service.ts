@@ -45,11 +45,28 @@ export class ProjectService {
         this.http.post<Project>(`${baseUrl}/projects`, project, {headers: header})
         .subscribe(
             ni => {
-                this.projects$.next(this.projects$.getValue().concat([ni]));
+                this.getProjects();
                 this.ns.show('Hibabejelentés hozzáadva!');
             },
             error => {
                 this.ns.show('HIBA! Hibabejelentés hozzáadása sikertelen!');
+                console.error(error);
+            }
+        );
+    }
+
+    updateProject(project: Project, id: number) {
+        const header = new HttpHeaders().set(
+            'Authorization', `Bearer ${localStorage.getItem('token')}`
+        );
+        this.http.patch<Project>(`${baseUrl}/projects/${id}`, project, {headers: header})
+        .subscribe(
+            ni => {
+                this.getProjects();
+                this.ns.show('Projekt módosítva!');
+            },
+            error => {
+                this.ns.show('HIBA! Projekt módosítása sikertelen!');
                 console.error(error);
             }
         );

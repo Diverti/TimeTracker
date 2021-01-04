@@ -123,9 +123,9 @@ class TasksController extends Controller
     {
         try{
             Task::where('id',$id)->firstOrFail()->delete();
-            return response('Task deleted.', 200);
+            return response(200);
         } catch(\Illuminate\Database\Eloquent\ModelNotFoundException $e){
-            return response('No task with such id.',404);
+            return response(404);
         }
     }
 }

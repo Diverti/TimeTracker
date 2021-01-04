@@ -18,6 +18,7 @@ class CreateProjectsTable extends Migration
             $table->string('name');
             $table->dateTime('due_date', 0);
             $table->foreignId('group_id');
+            $table->string('description');
             $table->boolean('is_done');
             $table->foreignId('company_id');
             $table->timestamps();

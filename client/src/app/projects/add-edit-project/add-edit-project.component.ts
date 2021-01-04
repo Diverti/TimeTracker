@@ -4,106 +4,68 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatAutocompleteSelectedEvent, MatAutocomplete } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
-import { ProejctService } from '@core/services/project.service';
+import { ProjectService } from '@core/services/project.service';
 import { NotificationService } from '@core/services/notification.service';
 
-import { Proejct } from '@core/interfaces/project.interface';
+import { Project } from '@core/interfaces/project.interface';
 import { Label } from '@core/interfaces/label.interface';
+import { AuthService } from '@core/services/auth.service';
+import { User } from '@core/interfaces/user.interface';
+import { Company } from '@core/interfaces/company.interface';
 
 @Component({
   selector: 'app-add-edit-project',
   templateUrl: './add-edit-project.component.html',
   styleUrls: ['./add-edit-project.component.scss']
 })
-export class AddEditProejctComponent implements OnInit {
+export class AddEditProjectComponent implements OnInit {
   projectForm: FormGroup;
+  isAddMode: boolean;
   separatorKeysCodes: number[] = [ENTER, COMMA];
-  labelCtrl = new FormControl();
-  filteredLabels: Observable<string[]>;
-  labels: string[] = [];
-  lids: number[] = [];
-  allLabels: string[] = [];
-  allLabelObjects: Label[] = [];
+  companies: Company[];
 
-  @ViewChild('labelInput') labelInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
   constructor(
     private formBuilder: FormBuilder,
-    public dialogRef: MatDialogRef<AddEditProejctComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Proejct,
-    public is: ProejctService,
-    private ns: NotificationService
+    public dialogRef: MatDialogRef<AddEditProjectComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    public is: ProjectService,
+    private ns: NotificationService,
+    protected as: AuthService
   ) {
-    this.projectForm = this.formBuilder.group({
-      title: [null, Validators.required],
-      description: [null, Validators.required],
-      place: null,
-      labels: []
-    });
-
-    this.filteredLabels = this.labelCtrl.valueChanges.pipe(
-      startWith(null),
-      map((label: string | null) => label ? this._filter(label) : this.allLabels.slice()));
-  }
+      this.projectForm = this.formBuilder.group({
+        name: [null, Validators.required],
+        description: [null, Validators.required],
+        due_date: [null, Validators.required],
+        company_id: [null, Validators.required],
+      });
+    }
 
   ngOnInit(): void {
-    this.is.getLabels().then((ls: Label[]) => {
-      this.allLabelObjects = ls;
-      ls.forEach((value, key) => {
-        this.allLabels.push(value['text']);
-      });
       if (this.data) {
-        this.projectForm.disable();
-        this.labelCtrl.disable();
+        this.isAddMode = false;
+        this.companies = []
         this.projectForm.patchValue(this.data);
-        this.data.labels.map(l => {
-          this.labels.push(l.text);
-        });
+      } else {
+        this.isAddMode = true;
+        this.companies = this.as.getCurrentUser().getValue().companies;
       }
-    });
   }
 
-  addProejct(form: FormGroup) {
+  addEditProject(form: FormGroup) {
     if (form.valid) {
-      form.patchValue({'labels': this.lids})
-      console.log(form.value);
-      this.is.addProejct(<Proejct>form.value);
-      this.projectForm.reset();
+      if(this.isAddMode)
+        this.is.addProject(<Project>form.value);
+      else
+        this.is.updateProject(<Project>form.value, this.data.id);
+      setTimeout(() => {this.dialogRef.close()},500);
     }
     else {
       this.ns.show('HIBA! Adatok nem megfelelőek!');
     }
   }
-
-  labelAdd(event: MatChipInputEvent): void {    
-    const input = event.input;
-    const value = event.value;
-    if ((value || '').trim()) {
-      this.labels.push(value.trim());
-    }
-    if (input) {
-      input.value = '';
-    }    
-    this.is.addLabel(value).then(lid => {
-      this.lids.push(lid);
-    });
-    this.labelCtrl.setValue(null);
-  }
-
-  labelSelected(event: MatAutocompleteSelectedEvent): void {    
-    this.labels.push(event.option.viewValue);
-    this.labelInput.nativeElement.value = '';
-    this.labelCtrl.setValue(null);
-    this.lids.push(this.allLabelObjects.find(l => l.text === event.option.viewValue).id);    
-  }
-
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-    return this.allLabels.filter(label => label.toLowerCase().indexOf(filterValue) === 0);
-  }
-
 }

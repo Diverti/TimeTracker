@@ -40,9 +40,12 @@ import { ProfileComponent } from './profile/profile.component';
 import { GroupsComponent } from './groups/groups.component'
 import { GroupComponent } from './groups/group/group.component';
 
-import { ProjectComponent } from './projects/project/project.component';
-import { ProjectsComponent } from './projects/projects.component';
+
 import { ProjectShowComponent } from './projects/projectShow/projectShow.component';
+import { ProjectsComponent } from './projects/projects.component';
+	import { DeleteProjectDialogComponent, ProjectComponent } from './projects/project/project.component';
+	import { AddEditProjectComponent } from './projects/add-edit-project/add-edit-project.component';
+
 
 import { UsersComponent } from './users/users.component';
 import { UserComponent } from './users/user/user.component';
@@ -50,14 +53,9 @@ import { UserComponent } from './users/user/user.component';
 import { TasksComponent } from './tasks/tasks.component';
 	import { TaskComponent } from './tasks/task/task.component';
 		import { AddEditTaskComponent } from './tasks/add-edit-task/add-edit-task.component';
-
-/*import { IssuesComponent } from './issues/issues.component';
-	import { IssueComponent } from './issues/issue/issue.component';
-		import { AddEditIssueComponent } from './issues/add-edit-issue/add-edit-issue.component';*/
+		import { DeleteTaskDialogComponent } from './tasks/task/task.component';
 
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
-
-//import { IssueDialogComponent } from './issues/issue/issue.component';
 
 @NgModule({
 	schemas: [
@@ -77,15 +75,14 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 		TasksComponent,
 			TaskComponent,
 				AddEditTaskComponent,
+				DeleteTaskDialogComponent,
 		ProjectsComponent,
+		ProjectShowComponent,
 			ProjectComponent,
-			ProjectShowComponent,
+				DeleteProjectDialogComponent,
+				AddEditProjectComponent,
 		GroupsComponent,	
-			GroupComponent,	
-		/*IssuesComponent,
-			IssueComponent,
-				AddEditIssueComponent,*/
-			//IssueDialogComponent
+			GroupComponent,
 		PagenotfoundComponent
 	],
 	imports: [

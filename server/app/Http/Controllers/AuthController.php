@@ -85,6 +85,6 @@ class AuthController extends Controller
      */
     public function getCurrentUser()
     {
-        return response()->json(['status' => 'OK', 'user' => Auth::user()], 200);
+        return response()->json(['status' => 'OK', 'user' => User::with('companies')->find(Auth::id())], 200);
     }
 }

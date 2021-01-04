@@ -17,7 +17,12 @@ class ProjectsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function getProjects() {
-        return Project::all();
+        $projects = Project::with('tasks','company')->get();
+        foreach($projects as $project){
+            $project->due_date = date_create($project->due_date);
+            $project->due_date = date_format($project->due_date, 'Y-m-d\TH:i');
+        }
+        return $projects;
     }
 
     public function getGroupProjects($group_id){
@@ -34,8 +39,9 @@ class ProjectsController extends Controller
     {
         $project = new Project;
         $project->name = $request->name;
+        $project->description = $request->description;
         $project->due_date = Carbon::parse($request->due_date);
-        $project->group_id = NULL;
+        $project->group_id = 0;
         $project->is_done = 0;
         $project->company_id = $request->company_id;
         $project->save();
@@ -59,7 +65,7 @@ class ProjectsController extends Controller
     public function getProject($id)
     {
         try{
-            return Project::where('id',$id)->firstOrFail();
+            return Project::with('company')->where('id',$id)->firstOrFail();
         } catch(\Illuminate\Database\Eloquent\ModelNotFoundException $e){
             return response('No project with such id.', 404);
         }
@@ -74,29 +80,19 @@ class ProjectsController extends Controller
      */
     public function updateProject(Request $request, $id)
     {
-        $user = User::find(auth()->user()->id);
         try{
             $project = Project::where('id',$id)->firstOrFail();
         } catch(\Illuminate\Database\Eloquent\ModelNotFoundException $e){
             return response('No project with such id.',404);
         }
         
-
-        foreach($user->groups()->get() as $group){
-            if($group->id == $project->group_id){
-                if($request->name)
-                    $project->name = $request->name;
-                if($request->due_date)
-                    $project->due_date = Carbon::parse($request->due_date);
-                if($request->group_id)
-                    $project->group_id = $request->group_id;
-                if($request->company_id)
-                    $project->company_id = $request->company_id;
-                $project->save();
-                return response($project,200);
-            }
-        }
-        return response('',401);
+        $project->name = $request->name;
+        $project->description = $request->description;
+        $project->due_date = Carbon::parse($request->due_date);
+        $project->company_id = $request->company_id;
+        $project->save();
+    
+        return response($project,200);
     }
 
     /**

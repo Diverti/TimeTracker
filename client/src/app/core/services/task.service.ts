@@ -24,16 +24,18 @@ export class TaskService {
         const header = new HttpHeaders().set(
             'Authorization', `Bearer ${localStorage.getItem('token')}`
         );
+
         this.http.get<Task[]>(`${baseUrl}/projects/${id}/tasks`, {headers: header})
             .subscribe(i => {
                 this.tasks$.next(i);
-            });
+        });
     }
 
     addTask(task: Task, id: number) {
         const header = new HttpHeaders().set(
             'Authorization', `Bearer ${localStorage.getItem('token')}`
         );
+
         this.http.post<Task>(`${baseUrl}/projects/${id}/tasks`, task, {headers: header})
         .subscribe(
             ni => {
@@ -47,22 +49,43 @@ export class TaskService {
         );
     }
 
-    async updateTask(task: Task, id: number){
+    updateTask(task: Task, id: number) {
         const header = new HttpHeaders().set(
             'Authorization', `Bearer ${localStorage.getItem('token')}`
         );
-        const idd = this.http.patch<Task>(`${baseUrl}/tasks/${id}`, task, {headers: header}).toPromise()
-        .then(
+
+        this.http.patch<Task>(`${baseUrl}/tasks/${id}`, task, {headers: header})
+        .subscribe(
             ni => {
+                var newtasks:Task[] = this.tasks$.getValue();
+                newtasks[newtasks.findIndex(t => t.id === id)] = ni;
                 this.ns.show('Feladat módosítva!');
-                this.tasks[this.tasks.findIndex(task => id === task.id)] = task;
             },
             error => {
-                this.ns.show('HIBA! Feladat hozzáadása sikertelen!');
+                this.ns.show('HIBA! Feladat módosítása sikertelen!');
                 console.error(error);
             }
         );
-        return idd;
+    }
+
+    deleteTask(id: number){
+        const header = new HttpHeaders().set(
+            'Authorization', `Bearer ${localStorage.getItem('token')}`
+        );
+        
+        this.http.delete<Task>(`${baseUrl}/tasks/${id}`, {headers: header})
+        .subscribe(
+            ni => {
+                console.log(ni);
+                var newtasks:Task[] = this.tasks$.getValue();
+                newtasks.splice(newtasks.findIndex(t => t.id === id), 1);
+                this.ns.show('Feladat törölve!');
+            },
+            error => {
+                this.ns.show('HIBA! Feladat törlése sikertelen!');
+                console.error(error);
+            }
+        );
     }
 
 }

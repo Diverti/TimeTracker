@@ -19,7 +19,6 @@ export class TasksComponent implements OnInit {
 		public dialog: MatDialog,
 		public ts: TaskService,
 		private route: ActivatedRoute,
-    	private projectService: TaskService
 	) { }
 
 	ngOnInit(): void {

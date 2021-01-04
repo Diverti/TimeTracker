@@ -53,7 +53,7 @@ export class AuthService {
         this.ns.show('Register succesfull!');
       },
       error => {
-        this.ns.show('Error! Check the given ipnuts!');
+        this.ns.show('Error! Check the given inputs!');
         console.error(error);
       }
     );
@@ -76,6 +76,14 @@ export class AuthService {
   }
 
   getCurrentUser(): BehaviorSubject<any> {
+    const header = new HttpHeaders().set(
+      'Authorization', `Bearer ${localStorage.getItem('token')}`
+    );
+    this.http.get<User>(`${baseUrl}/user`, {headers: header}).subscribe(
+      userInfo => {
+        this.currentUser$.next(userInfo['user']);
+      }
+    )
     return this.currentUser$;
   }
 

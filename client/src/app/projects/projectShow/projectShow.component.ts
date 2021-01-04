@@ -3,13 +3,12 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { Observable, Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 
-/*import { AddEditProjectComponent } from '../add-edit-project/add-edit-project.component';*/
-
 import { Project } from '@core/interfaces/project.interface';
 import { ProjectService } from '@core/services/project.service';
+import { AddEditProjectComponent } from '../add-edit-project/add-edit-project.component';
 
 @Component({
-  selector: 'app-project',
+  selector: 'app-projectShow',
   templateUrl: './projectShow.component.html',
   styleUrls: ['./projectShow.component.scss']
 })
@@ -29,10 +28,10 @@ export class ProjectShowComponent {
   }
 
   openEditProjectDialog(project: Project): void {
-		/*const dialogRef = this.dialog.open(AddEditProjectComponent, {
+		const dialogRef = this.dialog.open(AddEditProjectComponent, {
       width: '1000px',
       data: project
-		})*/
+		})
 	}
 
 }
