@@ -1,4 +1,4 @@
-<div *ngIf="!isAddMode || companies.length > 1">
+<div *ngIf="!isAddMode || companies?.length > 1">
 	<h2 *ngIf="isAddMode">Új feladat hozzáadása</h2>
 	<h2 *ngIf="!isAddMode">Feladat szerkesztése</h2>
 
@@ -35,7 +35,7 @@
 		</div>
 	</form>
 </div>
-<div *ngIf="companies.length < 1 && isAddMode">
+<div *ngIf="companies?.length < 1 && isAddMode">
 	<div mat-dialog-content>You need to make a company before creating a project.</div>
 	<div class="actions" style="margin-top: 10px;">
 		<button mat-button mat-dialog-close color="basic">Mkay</button>

@@ -14,20 +14,20 @@ import { AuthService } from '@core/services/auth.service';
 	styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
-	userbs$: BehaviorSubject<any>;
-	user: User;
+	userbs$: Observable<any>;
+	user$: any;
 
 	constructor(
 		public dialog: MatDialog,
 		public us: UserService,
 		protected as: AuthService
-	) { }
+	) {	
+		this.userbs$ = as.getCurrentUser();
+		this.userbs$.subscribe(user => this.user$ = user);
+	}
 
 	ngOnInit(): void {
 		this.us.getUsers();
-		
-		this.userbs$ = this.as.getCurrentUser();
-		console.log(this.userbs$.getValue());
 	}
 
 	openAddUserDialog(): void {

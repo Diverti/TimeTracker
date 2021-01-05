@@ -4,6 +4,7 @@ import { Message } from '@core/interfaces/message.interface';
 export interface Task {
     id?: number;
     name: string;
+    description: string;
     is_done?: string;
     created_by?: string;
     project_id?: string;

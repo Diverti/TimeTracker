@@ -1,9 +1,9 @@
-<!-- <div *ngIf="user.permission == 10">
+<div *ngIf="user$?.permission == 10">
 	<h2>Users:</h2>
 	<div class="user" *ngFor="let user of (us.users$ | async)">
 		<app-user [user]="user"></app-user>
 	</div>
 </div>
-<div *ngIf="user.permission < 10">
+<div *ngIf="user$?.permission < 10">
 	<h2>Hát ez most nem fog menni :'(</h2>
-</div> -->
+</div>

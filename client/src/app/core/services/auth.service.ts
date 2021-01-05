@@ -16,6 +16,7 @@ import { map } from 'rxjs/operators';
 export class AuthService {
   isLogin$ = new BehaviorSubject<boolean>(this.hasToken());
   currentUser$ = new BehaviorSubject<any>(null);
+  user$ = new Observable<any>(null);
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -39,7 +40,7 @@ export class AuthService {
         }
       )
     }
-    
+    this.user$ = this.currentUser$.asObservable();
    }
 
   isLoggedIn(): Observable<boolean> {
@@ -76,15 +77,11 @@ export class AuthService {
   }
 
   getCurrentUser(): BehaviorSubject<any> {
-    const header = new HttpHeaders().set(
-      'Authorization', `Bearer ${localStorage.getItem('token')}`
-    );
-    this.http.get<User>(`${baseUrl}/user`, {headers: header}).subscribe(
-      userInfo => {
-        this.currentUser$.next(userInfo['user']);
-      }
-    )
     return this.currentUser$;
+  }
+
+  getUser(): Observable<any> {
+    return this.user$;
   }
 
   logout(): void {
