@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { User } from '@core/interfaces/user.interface';
+import { AuthService } from '@core/services/auth.service';
+import { BehaviorSubject } from 'rxjs';
+import { EditProfileComponent } from './add-edit-profile/edit-profile.component';
 
 @Component({
   selector: 'app-profile',
@@ -6,10 +11,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+  
+  user$: BehaviorSubject<User>;
+  user: User;
 
-  constructor() { }
+  constructor(
+      protected as: AuthService,
+      private dialog: MatDialog,
+    ) { 
+    this.user$ = as.getCurrentUser();
+    this.user$.subscribe(user => this.user = user)
+   }
 
   ngOnInit(): void {
+    console.log(this.user);
   }
+
+  openEditProfileDialog(user: User): void {
+		const dialogRef = this.dialog.open(EditProfileComponent, {
+      width: '1000px',
+      data: user
+		})
+	}
 
 }

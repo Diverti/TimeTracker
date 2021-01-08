@@ -1,0 +1,21 @@
+<h2>Profil szerkesztése</h2>
+
+<form [formGroup]="profileForm" (ngSubmit)="editProfile(profileForm)" novalidate>
+	<div fxLayout="row wrap" fxLayoutAlign="start start">
+		<mat-form-field appearance="fill" fxFlex="100">
+			<mat-label>Név</mat-label>
+			<input matInput type="text" placeholder="A te neved" formControlName="name">
+			<mat-error>Mező kitöltése kötelező!</mat-error>
+		</mat-form-field>
+		
+		<mat-form-field appearance="fill" fxFlex="100">
+			<mat-label>Email</mat-label>
+			<input matInput type="input" formControlName="email" placeholder="example@example.com">
+			<mat-error>Mező kitöltése kötelező!</mat-error>
+		</mat-form-field>
+		
+		<div class="actions">
+			<button mat-raised-button color="accent" [disabled]="profileForm.invalid">Rögzítés</button>
+		</div>
+	</div>
+</form>

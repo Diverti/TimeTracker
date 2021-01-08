@@ -26,4 +26,9 @@ class Project extends Model
     public function tasks() {
         return $this->hasMany('App\Task');
     }
+
+    public function delete() {
+        $this->tasks()->delete();
+        return parent::delete();
+    }
 }

@@ -56,6 +56,7 @@ import { TasksComponent } from './tasks/tasks.component';
 		import { DeleteTaskDialogComponent } from './tasks/task/task.component';
 
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+	import { EditProfileComponent } from './profile/add-edit-profile/edit-profile.component';
 
 @NgModule({
 	schemas: [
@@ -70,6 +71,7 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 		MenuComponent,
 		SettingsComponent,
 		ProfileComponent,
+			EditProfileComponent,
 		UsersComponent,
 			UserComponent,
 		TasksComponent,

@@ -47,4 +47,21 @@ export class UserService {
             }
         );
     }
+
+    updateUser(user: User,id: number) {
+        const header = new HttpHeaders().set(
+            'Authorization', `Bearer ${localStorage.getItem('token')}`
+        );
+        this.http.post<User>(`${baseUrl}/users`, user, {headers: header})
+        .subscribe(
+            ni => {
+                this.users$.next(this.users$.getValue().concat([ni]));
+                this.ns.show('Hibabejelentés hozzáadva!');
+            },
+            error => {
+                this.ns.show('HIBA! Hibabejelentés hozzáadása sikertelen!');
+                console.error(error);
+            }
+        );
+    }
 }

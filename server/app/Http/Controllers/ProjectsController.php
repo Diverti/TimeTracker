@@ -103,21 +103,16 @@ class ProjectsController extends Controller
      */
     public function deleteProject(Request $request, $id)
     {
-        $user = User::find(auth()->user()->id);
         try{
             $project = Project::where('id',$id)->firstOrFail();
+            $project->delete();
+            return response('', 200);
         } catch(\Illuminate\Database\Eloquent\ModelNotFoundException $e){
             return response('No project with such id.', 404);
         }
-        
 
-        foreach($user->groups()->get() as $group){
-            if($group->id == $project->group_id){
-                $project->delete();
-                return response('Project deleted.',200);
-            }
-        }
-        return response('',401);
+
+        return response('', 401);
 
     }
 

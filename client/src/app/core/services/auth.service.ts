@@ -41,6 +41,7 @@ export class AuthService {
       )
     }
     this.user$ = this.currentUser$.asObservable();
+    console.log(this.user$);
    }
 
   isLoggedIn(): Observable<boolean> {

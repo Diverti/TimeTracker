@@ -19,8 +19,10 @@ export class AddEditTaskComponent implements OnInit {
   taskForm: FormGroup;
   isAddMode: boolean;
   separatorKeysCodes: number[] = [ENTER, COMMA];
-  @ViewChild('auto') matAutocomplete: MatAutocomplete;
   project_id: number;
+  
+  @ViewChild('auto') matAutocomplete: MatAutocomplete;
+  
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,

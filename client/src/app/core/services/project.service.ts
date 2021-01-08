@@ -72,4 +72,21 @@ export class ProjectService {
         );
     }
 
+    deleteProject(id: number) {
+        const header = new HttpHeaders().set(
+            'Authorization', `Bearer ${localStorage.getItem('token')}`
+        );
+        this.http.delete<Project>(`${baseUrl}/projects/${id}`, {headers: header})
+        .subscribe(
+            ni => {
+                this.getProjects();
+                this.ns.show('Projekt törölve!');
+            },
+            error => {
+                this.ns.show('HIBA! Projekt törlése sikertelen!');
+                console.error(error);
+            }
+        );
+    }
+
 }

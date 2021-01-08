@@ -8,6 +8,8 @@ import { Project } from '@core/interfaces/project.interface';
 import { TaskService } from '@core/services/task.service';
 import { Router } from '@angular/router';
 import { MatAutocomplete } from '@angular/material/autocomplete';
+import { ProjectService } from '@core/services/project.service';
+import { pseudoRandomBytes } from 'crypto';
 
 @Component({
   selector: 'app-project',
@@ -51,8 +53,9 @@ export class ProjectComponent {
 export class DeleteProjectDialogComponent {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: Project,
+    protected ps: ProjectService
   ){}
   deleteProject(project: Project){
-    console.log(this.data);
+    this.ps.deleteProject(this.data.id);
   }
 }
