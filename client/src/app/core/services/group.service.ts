@@ -5,7 +5,6 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { NotificationService } from '@core/services/notification.service';
 
 import { Group } from '@core/interfaces/group.interface';
-import { Label } from '@core/interfaces/label.interface';
 
 import { baseUrl } from 'src/environments/environment';
 
@@ -14,7 +13,6 @@ import { baseUrl } from 'src/environments/environment';
 })
 export class GroupService {
     groups$ = new BehaviorSubject<Group[]>([]);
-    labels: Label[] = [];
 
     constructor(
         private http: HttpClient,
@@ -39,7 +37,7 @@ export class GroupService {
         .subscribe(
             ni => {
                 this.groups$.next(this.groups$.getValue().concat([ni]));
-                this.ns.show('Hibabejelentés hozzáadva!');
+                this.ns.show('Csoport hozzáadva!');
             },
             error => {
                 this.ns.show('HIBA! Hibabejelentés hozzáadása sikertelen!');
@@ -48,30 +46,37 @@ export class GroupService {
         );
     }
 
-    async getLabels(): Promise<Label[]> {
+    updateGroup(group: Group, id: number) {
         const header = new HttpHeaders().set(
             'Authorization', `Bearer ${localStorage.getItem('token')}`
         );
-        const labels: Label[] = await this.http.get<Label[]>(`${baseUrl}/labels`, {headers: header}).toPromise();
-        return labels;
-    }
-
-    async addLabel(label: string) {        
-        const header = new HttpHeaders().set(
-            'Authorization', `Bearer ${localStorage.getItem('token')}`
-        );        
-        const id = await this.http.post<number>(`${baseUrl}/labels`, {'text': label}, {headers: header}).toPromise()
-        .then(
-            l => {
-                this.ns.show('Új cimke hozzáadva!');
-                return l['id'];
-            })
-            .catch(error => {
-                this.ns.show('HIBA! Új cimke hozzáadása sikertelen!');
+        this.http.patch<Group>(`${baseUrl}/groups/${id}`, group, {headers: header})
+        .subscribe(
+            ni => {
+                this.getGroups();
+                this.ns.show('Csoport módosítva!');
+            },
+            error => {
+                this.ns.show('HIBA! Csoport módosítása sikertelen!');
                 console.error(error);
             }
         );
-        return id;
     }
 
+    deleteGroup(id: number) {
+        const header = new HttpHeaders().set(
+            'Authorization', `Bearer ${localStorage.getItem('token')}`
+        );
+        this.http.delete<Group>(`${baseUrl}/groups/${id}`, {headers: header})
+        .subscribe(
+            ni => {
+                this.getGroups();
+                this.ns.show('Csoport törölve!');
+            },
+            error => {
+                this.ns.show('HIBA! Csoport törlése sikertelen!');
+                console.error(error);
+            }
+        );
+    }
 }

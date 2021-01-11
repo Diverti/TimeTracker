@@ -5,7 +5,6 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { NotificationService } from '@core/services/notification.service';
 
 import { User } from '@core/interfaces/user.interface';
-import { Label } from '@core/interfaces/label.interface';
 
 import { baseUrl } from 'src/environments/environment';
 
@@ -14,7 +13,6 @@ import { baseUrl } from 'src/environments/environment';
 })
 export class UserService {
     users$ = new BehaviorSubject<User[]>([]);
-    labels: Label[] = [];
 
     constructor(
         private http: HttpClient,

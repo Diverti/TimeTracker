@@ -1,5 +1,4 @@
 import { ComponentFactory } from '@angular/core';
-import { Label } from '@core/interfaces/label.interface';
 import { Message } from '@core/interfaces/message.interface';
 import { Company } from './company.interface';
 import { Task } from './task.interface';

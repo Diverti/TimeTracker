@@ -2,3 +2,6 @@
 <div class="group" *ngFor="let group of (gs.groups$ | async)">
 	<app-group [group]="group"></app-group>
 </div>
+<button mat-mini-fab color="accent" class="add-button" (click)="openAddGroupDialog()" matTooltip="New Group">
+	<mat-icon>add</mat-icon>
+</button>

@@ -3,9 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Observable, Subscription } from 'rxjs';
 
 import { GroupService } from '@core/services/group.service';
-//import { AddEditGroupComponent } from './add-edit-group/add-edit-group.component';
-
-import { Group } from '@core/interfaces/group.interface';
+import { AddEditGroupComponent } from './add-edit-group/add-edit-group.component';
 
 @Component({
 	selector: 'app-groups',
@@ -23,10 +21,10 @@ export class GroupsComponent implements OnInit {
 		this.gs.getGroups();
 	}
 
-	/*openAddGroupDialog(): void {
+	openAddGroupDialog(): void {
 		const dialogRef = this.dialog.open(AddEditGroupComponent, {
 			width: '1000px'
 		})
-	}*/
+	}
 
 }
