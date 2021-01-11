@@ -1,0 +1,14 @@
+<h2 *ngIf="isAddMode">Új cég hozzáadása</h2>
+<h2 *ngIf="!isAddMode">Cég adatainak módosítása</h2>
+<form [formGroup]="companyForm" (ngSubmit)="addEditCompany(companyForm)" novalidate>
+	<div fxLayout="row wrap" fxLayoutAlign="start start">
+		<mat-form-field appearance="fill" fxFlex="100">
+			<mat-label>Hibabejelentés címe</mat-label>
+			<input matInput type="text" placeholder="Cég neve" formControlName="name">
+			<mat-error>Mező kitöltése kötelező!</mat-error>
+		</mat-form-field>
+		<div class="actions">
+			<button [disabled]="companyForm.invalid" mat-raised-button color="accent">Rögzítés</button>
+		</div>
+	</div>
+</form>

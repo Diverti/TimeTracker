@@ -78,6 +78,15 @@ export class AuthService {
   }
 
   getCurrentUser(): BehaviorSubject<any> {
+      const header = new HttpHeaders().set(
+        'Authorization', `Bearer ${localStorage.getItem('token')}`
+      );
+      this.http.get<User>(`${baseUrl}/user`, {headers: header}).subscribe(
+        userInfo => {
+          this.currentUser$.next(userInfo['user']);
+        }
+      )
+    
     return this.currentUser$;
   }
 
