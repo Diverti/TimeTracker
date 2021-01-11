@@ -44,7 +44,7 @@ export class EditProfileComponent implements OnInit {
 
   editProfile(form: FormGroup) {
     if (form.valid) {
-        this.us.updateUser(<User>form.value, this.data.id);
+      this.us.updateUser(<User>form.value, this.data.id);
       setTimeout(() => {this.dialogRef.close()},500);
     }
     else {

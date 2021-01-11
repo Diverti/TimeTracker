@@ -57,6 +57,9 @@ import { TasksComponent } from './tasks/tasks.component';
 
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 	import { EditProfileComponent } from './profile/add-edit-profile/edit-profile.component';
+import { CompanyComponent } from './companies/company/company.component';
+import { CompaniesComponent } from './companies/companies.component';
+import { AddEditCompanyComponent } from './companies/add-edit-company/add-edit-company.component';
 
 @NgModule({
 	schemas: [
@@ -85,6 +88,9 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 				AddEditProjectComponent,
 		GroupsComponent,	
 			GroupComponent,
+		CompanyComponent,
+			CompaniesComponent,
+				AddEditCompanyComponent,
 		PagenotfoundComponent
 	],
 	imports: [

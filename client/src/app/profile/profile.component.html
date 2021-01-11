@@ -13,10 +13,10 @@
         <p>{{ user?.email }}</p>
         <h3>Companies</h3>
         <p *ngIf="user?.companies?.length === 0 || !user?.companies">You currently have no companies.</p>
-        <p *ngFor="let company of (user?.companies)"></p>
+        <app-companies [companies]="user?.companies"></app-companies>
     </mat-card-content>
     <mat-card-actions>
         <button mat-button (click)="openEditProfileDialog(user)">Edit</button>
-        <!-- <button mat-button>Change password</button> -->
+        <button mat-button (click)="openAddCompanyDialog()">Make company</button>
     </mat-card-actions>
 </mat-card>

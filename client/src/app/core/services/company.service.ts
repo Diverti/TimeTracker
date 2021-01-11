@@ -46,4 +46,21 @@ export class CompanyService {
             }
         );
     }
+
+    updateCompany(company: Company, id: number) {
+        const header = new HttpHeaders().set(
+            'Authorization', `Bearer ${localStorage.getItem('token')}`
+        );
+        this.http.patch<Company>(`${baseUrl}/companies/${id}`, company, {headers: header})
+        .subscribe(
+            ni => {
+                this.getCompanies();
+                this.ns.show('Cég adatai módosítva!');
+            },
+            error => {
+                this.ns.show('HIBA! Cég hozzáadása sikertelen!');
+                console.error(error);
+            }
+        );
+    }
 }

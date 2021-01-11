@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { User } from '@core/interfaces/user.interface';
 import { AuthService } from '@core/services/auth.service';
 import { BehaviorSubject } from 'rxjs';
+import { AddEditCompanyComponent } from '../companies/add-edit-company/add-edit-company.component';
 import { EditProfileComponent } from './add-edit-profile/edit-profile.component';
 
 @Component({
@@ -31,6 +32,12 @@ export class ProfileComponent implements OnInit {
 		const dialogRef = this.dialog.open(EditProfileComponent, {
       width: '1000px',
       data: user
+		})
+  }
+  
+  openAddCompanyDialog(): void {
+		const dialogRef = this.dialog.open(AddEditCompanyComponent, {
+			width: '1000px'
 		})
 	}
 
