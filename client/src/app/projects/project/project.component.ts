@@ -1,4 +1,5 @@
 import { Component, Inject, Input, ViewChild } from '@angular/core';
+import { DatePipe } from '@angular/common';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 
@@ -9,7 +10,6 @@ import { TaskService } from '@core/services/task.service';
 import { Router } from '@angular/router';
 import { MatAutocomplete } from '@angular/material/autocomplete';
 import { ProjectService } from '@core/services/project.service';
-import { pseudoRandomBytes } from 'crypto';
 
 @Component({
   selector: 'app-project',
