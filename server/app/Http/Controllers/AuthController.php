@@ -58,10 +58,11 @@ class AuthController extends Controller
             'email' => 'required',
             'password' => 'required',
         ]);
-
+        
         if (auth()->attempt($credentials)) {
+            $user = User::with('companies')->find(Auth::id());
             $token = Auth::user()->createToken(token)->accessToken;
-            return response()->json(['status' => 'OK', 'token' => $token, 'user' => auth()->user()], 200);
+            return response()->json(['status' => 'OK', 'token' => $token, 'user' => $user], 200);
         } else {
             return response()->json(['status' => 'error', 'error' => 'Unauthorised'], 401);
         }

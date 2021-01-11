@@ -20,7 +20,7 @@ export class ProfileComponent implements OnInit {
       private dialog: MatDialog,
     ) { 
     this.user$ = as.getCurrentUser();
-    this.user$.subscribe(user => this.user = user)
+    this.user$.subscribe(user => this.user = user);
    }
 
   ngOnInit(): void {

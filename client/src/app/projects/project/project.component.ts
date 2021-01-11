@@ -9,7 +9,6 @@ import { TaskService } from '@core/services/task.service';
 import { Router } from '@angular/router';
 import { MatAutocomplete } from '@angular/material/autocomplete';
 import { ProjectService } from '@core/services/project.service';
-import { pseudoRandomBytes } from 'crypto';
 
 @Component({
   selector: 'app-project',
