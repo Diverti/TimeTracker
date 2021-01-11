@@ -3,8 +3,11 @@
         <mat-expansion-panel-header>
             <mat-panel-title>#{{ company.id }} - {{ company.name }}</mat-panel-title>
             <mat-panel-description>
-                <button mat-mini-fab color="primary" class="edit-button" (click)="openEditCompanyDialog(company)" matTooltip="Jegy szerkesztése">
+                <button mat-mini-fab color="primary" class="edit-button" (click)="openEditCompanyDialog(company)" matTooltip="Cég szerkesztése">
                     <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-mini-fab color="primary" class="delete-button" (click)="openDeleteCompanyDialog(company)" matTooltip="Cég törlése">
+                    <mat-icon>delete</mat-icon>
                 </button>
             </mat-panel-description>
         </mat-expansion-panel-header>

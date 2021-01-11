@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, Inject, ElementRef, ViewChild, Input } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -15,6 +15,7 @@ import { Label } from '@core/interfaces/label.interface';
 import { AuthService } from '@core/services/auth.service';
 import { User } from '@core/interfaces/user.interface';
 import { Company } from '@core/interfaces/company.interface';
+import { CompanyService } from '@core/services/company.service';
 
 @Component({
   selector: 'app-add-edit-project',
@@ -25,9 +26,10 @@ export class AddEditProjectComponent implements OnInit {
   projectForm: FormGroup;
   isAddMode: boolean;
   separatorKeysCodes: number[] = [ENTER, COMMA];
-  companies: Company[];
+  //companies: Company[];
 
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
+  @Input() companies: Company[] = null;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -35,7 +37,8 @@ export class AddEditProjectComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     public is: ProjectService,
     private ns: NotificationService,
-    protected as: AuthService
+    protected as: AuthService,
+    protected cs: CompanyService
   ) {
       this.projectForm = this.formBuilder.group({
         name: [null, Validators.required],
@@ -46,13 +49,13 @@ export class AddEditProjectComponent implements OnInit {
     }
 
   ngOnInit(): void {
-      if (this.data) {
+      if (this.data.description) {
         this.isAddMode = false;
         this.companies = []
         this.projectForm.patchValue(this.data);
       } else {
         this.isAddMode = true;
-        this.companies = this.as.getCurrentUser().getValue().companies;
+        this.companies = this.cs.getCurrentCompanies();
       }
   }
 

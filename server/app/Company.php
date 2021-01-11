@@ -19,7 +19,12 @@ class Company extends Model
         return $this->hasMany('App\Project');
     }
 
-    public function user(){
+    public function user() {
         return $this->belongsTo('App\User', 'created_by');
+    }
+
+    public function delete() {
+        $this->projects()->delete();
+        return parent::delete();
     }
 }

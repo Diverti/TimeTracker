@@ -36,6 +36,7 @@ Route::middleware('auth:api')->group(function() {
     Route::delete(  'companies/{id}',   'CompaniesController@deleteCompany');
     Route::put(     'companies/{id}',   'CompaniesController@updateCompany');
     Route::patch(   'companies/{id}',   'CompaniesController@updateCompany');
+    Route::get(     'currentcompanies',   'CompaniesController@getCurrentCompanies');
 
     //Groups
     Route::post(    'groups',            'GroupsController@addGroup');

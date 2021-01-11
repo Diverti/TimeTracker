@@ -57,7 +57,7 @@ import { TasksComponent } from './tasks/tasks.component';
 
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 	import { EditProfileComponent } from './profile/add-edit-profile/edit-profile.component';
-import { CompanyComponent } from './companies/company/company.component';
+import { CompanyComponent, DeleteCompanyDialogComponent } from './companies/company/company.component';
 import { CompaniesComponent } from './companies/companies.component';
 import { AddEditCompanyComponent } from './companies/add-edit-company/add-edit-company.component';
 
@@ -91,6 +91,7 @@ import { AddEditCompanyComponent } from './companies/add-edit-company/add-edit-c
 		CompanyComponent,
 			CompaniesComponent,
 				AddEditCompanyComponent,
+				DeleteCompanyDialogComponent,
 		PagenotfoundComponent
 	],
 	imports: [

@@ -47,6 +47,14 @@ class CompaniesController extends Controller
         }
     }
 
+    public function getCurrentCompanies() {
+        try {
+            return Company::where('created_by', auth()->user()->id)->get();
+        } catch(\Illuminate\Database\Eloquent\ModelNotFoundException $e){
+            return response('',404);
+        }
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -77,7 +85,7 @@ class CompaniesController extends Controller
         try{
             $company = Company::where('id',$id)->firstOrFail();
             $company->delete();
-            return response('Company deleted.', 200);
+            return response('', 200);
         } catch(\Illuminate\Database\Eloquent\ModelNotFoundException $e){
             return response('No company with such id.', 404);
         }

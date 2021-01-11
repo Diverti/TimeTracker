@@ -14,6 +14,7 @@ import { baseUrl } from 'src/environments/environment';
 })
 export class CompanyService {
     companies$ = new BehaviorSubject<Company[]>([]);
+    currentCompanies$ = new BehaviorSubject<Company[]>([]);
 
     constructor(
         private http: HttpClient,
@@ -56,6 +57,34 @@ export class CompanyService {
             ni => {
                 this.getCompanies();
                 this.ns.show('Cég adatai módosítva!');
+            },
+            error => {
+                this.ns.show('HIBA! Cég hozzáadása sikertelen!');
+                console.error(error);
+            }
+        );
+    }
+
+    getCurrentCompanies(): Company[]{
+        const header = new HttpHeaders().set(
+            'Authorization', `Bearer ${localStorage.getItem('token')}`
+        );
+        this.http.get<Company[]>(`${baseUrl}/currentcompanies`, {headers: header})
+            .subscribe(i => {
+                this.currentCompanies$.next(i);
+        });
+        return this.currentCompanies$.getValue();
+    } 
+
+    deleteCompany(id: number) {
+        const header = new HttpHeaders().set(
+            'Authorization', `Bearer ${localStorage.getItem('token')}`
+        );
+        this.http.delete<Company>(`${baseUrl}/companies/${id}`, {headers: header})
+        .subscribe(
+            ni => {
+                this.getCompanies();
+                this.ns.show('Cég törölve!');
             },
             error => {
                 this.ns.show('HIBA! Cég hozzáadása sikertelen!');
