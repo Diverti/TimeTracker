@@ -1,7 +1,7 @@
 <mat-accordion multi>
     <mat-expansion-panel>
         <mat-expansion-panel-header>
-            <mat-panel-title>#{{ project.id }} - {{ project.name }}</mat-panel-title>
+            <mat-panel-title>#{{ project?.id }} - {{ project?.name }}</mat-panel-title>
             <mat-panel-description>
                 <span><mat-icon>alarm</mat-icon><span class="label">{{ project.due_date | date:'mediumDate' }}</span></span>
                 <span><mat-icon style='color: {{ project.is_done ? "red" : "green" }}'>task_alt</mat-icon><span class="label">{{ project.is_done ? "No" : "Yes"}}</span></span>
@@ -15,9 +15,9 @@
                 </button>
             </mat-panel-description>
         </mat-expansion-panel-header>
-        <h2>Company: {{ project.company.name }}</h2>
-        <h2>Tasks: {{ project.tasks.length }}</h2>
-        <p>{{ project.description }}</p>
+        <h2>Company: {{ project?.company?.name }}</h2>
+        <h2>Tasks: {{ project?.tasks?.length }}</h2>
+        <p>{{ project?.description }}</p>
         <br>
         <p>Created at: {{ project.created_at | date:'mediumDate' }}</p>
         <button mat-mini-fab color="primary" class="edit-button" (click)="goToProject(project)" matTooltip="Show Project">

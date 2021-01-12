@@ -5,7 +5,6 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { NotificationService } from '@core/services/notification.service';
 
 import { Company } from '@core/interfaces/Company.interface';
-import { Label } from '@core/interfaces/label.interface';
 
 import { baseUrl } from 'src/environments/environment';
 

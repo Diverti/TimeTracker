@@ -1,6 +1,6 @@
 <div *ngIf="!isAddMode || companies?.length > 1">
-	<h2 *ngIf="isAddMode">Új feladat hozzáadása</h2>
-	<h2 *ngIf="!isAddMode">Feladat szerkesztése</h2>
+	<h2 *ngIf="isAddMode">Új projekt hozzáadása</h2>
+	<h2 *ngIf="!isAddMode">Projekt szerkesztése</h2>
 
 	<form [formGroup]="projectForm" (ngSubmit)="addEditProject(projectForm)" novalidate>
 		<div fxLayout="row wrap" fxLayoutAlign="start start">

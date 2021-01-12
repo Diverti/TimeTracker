@@ -1,6 +1,7 @@
 <h2>Projects:</h2>
+<p>You can see the available projects</p>
 <div class="project" *ngFor="let project of (ps.projects$ | async)">
-	<app-project [project]="project"></app-project>
+	<app-project *ngIf="project.group_id < 1" [project]="project"></app-project>
 </div>
 <button mat-mini-fab color="accent" class="add-button" (click)="openAddProjectDialog()" matTooltip="New Project">
 	<mat-icon>add</mat-icon>

@@ -14,7 +14,7 @@ class GroupsController extends Controller
      */
     public function getGroups()
     {
-        return Group::all();
+        return Group::with('projects','projects.tasks','projects.company')->get();
     }
 
     /**
@@ -94,7 +94,7 @@ class GroupsController extends Controller
             $group = Group::where('id',$id)->firstOrFail();
             if(auth()->user()->id == $group->created_by){
                 $group->delete();
-                return response('Group deleted.',200);
+                return response('',200);
             } else{
                 return response('Unauthorized access.', 401);
             }

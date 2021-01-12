@@ -38,7 +38,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { ProfileComponent } from './profile/profile.component';
 
 import { GroupsComponent } from './groups/groups.component'
-import { GroupComponent } from './groups/group/group.component';
+import { DeleteGroupDialogComponent, GroupComponent } from './groups/group/group.component';
 
 
 import { ProjectShowComponent } from './projects/projectShow/projectShow.component';
@@ -60,6 +60,7 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { CompanyComponent, DeleteCompanyDialogComponent } from './companies/company/company.component';
 import { CompaniesComponent } from './companies/companies.component';
 import { AddEditCompanyComponent } from './companies/add-edit-company/add-edit-company.component';
+import { AddEditGroupComponent } from './groups/add-edit-group/add-edit-group.component';
 
 @NgModule({
 	schemas: [
@@ -88,6 +89,8 @@ import { AddEditCompanyComponent } from './companies/add-edit-company/add-edit-c
 				AddEditProjectComponent,
 		GroupsComponent,	
 			GroupComponent,
+				AddEditGroupComponent,
+				DeleteGroupDialogComponent,
 		CompanyComponent,
 			CompaniesComponent,
 				AddEditCompanyComponent,

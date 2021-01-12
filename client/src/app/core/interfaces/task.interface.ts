@@ -1,4 +1,3 @@
-import { Label } from '@core/interfaces/label.interface';
 import { Message } from '@core/interfaces/message.interface';
 
 export interface Task {

@@ -11,7 +11,6 @@ import { ProjectService } from '@core/services/project.service';
 import { NotificationService } from '@core/services/notification.service';
 
 import { Project } from '@core/interfaces/project.interface';
-import { Label } from '@core/interfaces/label.interface';
 import { AuthService } from '@core/services/auth.service';
 import { User } from '@core/interfaces/user.interface';
 import { Company } from '@core/interfaces/company.interface';
@@ -66,8 +65,7 @@ export class AddEditProjectComponent implements OnInit {
       else
         this.is.updateProject(<Project>form.value, this.data.id);
       setTimeout(() => {this.dialogRef.close()},500);
-    }
-    else {
+    } else {
       this.ns.show('HIBA! Adatok nem megfelelőek!');
     }
   }
