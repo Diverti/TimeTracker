@@ -85,7 +85,7 @@ class TasksController extends Controller
             $task->is_done = 1;
             $task->save();
             app(ProjectsController::class)->done($task->project_id);
-            return response('Task done.', 200);
+            return response('', 200);
         } catch(\Illuminate\Database\Eloquent\ModelNotFoundException $e){
             return response('No task with such id.',404);
         }

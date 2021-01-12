@@ -7,6 +7,7 @@ import { Group } from '@core/interfaces/group.interface';
 import { GroupService } from '@core/services/group.service';
 import { ProjectService } from '@core/services/project.service';
 import { Project } from '@core/interfaces/project.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-group',
@@ -20,13 +21,18 @@ export class GroupComponent {
 
   constructor(
     private dialog: MatDialog,
-    private ps: ProjectService
+    private ps: ProjectService,
+    private router: Router
   ) { 
     
   }
 
   ngOnInit(){
     this.projects = this.group.projects;
+  }
+
+  goToGroup(group: Group): void{
+    this.router.navigate([`/groups/${group.id}`])
   }
 
   openEditGroupDialog(group: Group): void {

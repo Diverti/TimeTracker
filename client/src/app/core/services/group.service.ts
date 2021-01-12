@@ -4,20 +4,28 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { NotificationService } from '@core/services/notification.service';
 
+
 import { Group } from '@core/interfaces/group.interface';
 
 import { baseUrl } from 'src/environments/environment';
+import { AuthService } from './auth.service';
+import { UserComponent } from 'src/app/users/user/user.component';
+import { User } from '@core/interfaces/user.interface';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class GroupService {
     groups$ = new BehaviorSubject<Group[]>([]);
+    group$: Observable<Group>;
 
     constructor(
         private http: HttpClient,
-        private ns: NotificationService
-    ) {}
+        private ns: NotificationService,
+        private as: AuthService
+    ) {
+        
+    }
 
     getGroups(): void {        
         const header = new HttpHeaders().set(
@@ -27,6 +35,16 @@ export class GroupService {
             .subscribe(i => {
                 this.groups$.next(i);
             });
+    }
+
+    getGroup(id: number): Observable<Group>{
+        const header = new HttpHeaders().set(
+            'Authorization', `Bearer ${localStorage.getItem('token')}`
+        );
+        this.group$ = this.http.get<Group>(`${baseUrl}/groups/${id}`, {headers: header});
+        
+        
+        return this.group$;
     }
 
     addGroup(group: Group) {

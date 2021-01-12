@@ -13,10 +13,15 @@ import { TaskService } from '@core/services/task.service';
   styleUrls: ['./task.component.scss']
 })
 export class TaskComponent {
+  started: boolean = false;
+  timer: number = 0;
+  interval;
 
  @Input() task: Task = null;
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog,
+    private ts: TaskService) {
+   }
 
   openDeleteDialog(task: Task):void {
     this.dialog.open(DeleteTaskDialogComponent, {
@@ -29,7 +34,23 @@ export class TaskComponent {
       width: '1000px',
       data: task
 		})
-	}
+  }
+  
+  taskDone(task: Task): void {
+    this.ts.taskDone(task.id);
+  }
+
+  startTimer(): void{
+    if(!this.started){
+      this.started = true;
+      this.interval = setInterval(() => {
+          this.timer++;
+      },1000)
+    } else {
+      this.started = false;
+      clearInterval(this.interval);
+    }
+  }
 
 }
 

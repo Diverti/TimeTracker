@@ -49,6 +49,25 @@ export class TaskService {
         );
     }
 
+    taskDone(id: number) {
+        const header = new HttpHeaders().set(
+            'Authorization', `Bearer ${localStorage.getItem('token')}`
+        );
+
+        this.http.patch<Task>(`${baseUrl}/tasks/${id}/done`, {headers: header})
+        .subscribe(
+            ni => {
+                var newtasks:Task[] = this.tasks$.getValue();
+                newtasks[newtasks.findIndex(t => t.id === id)].is_done = true;
+                this.ns.show('Feladat elvégezve!');
+            },
+            error => {
+                this.ns.show('HIBA! Feladat hozzáadása sikertelen!');
+                console.error(error);
+            }
+        );
+    }
+
     updateTask(task: Task, id: number) {
         const header = new HttpHeaders().set(
             'Authorization', `Bearer ${localStorage.getItem('token')}`

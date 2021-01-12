@@ -15,5 +15,9 @@
         <div *ngFor="let project of projects">
            <app-project [project]="project"></app-project> 
         </div>
+
+        <button mat-mini-fab color="primary" class="edit-button" (click)="goToGroup(group)" matTooltip="Show Group">
+            <mat-icon>list</mat-icon>
+        </button>
     </mat-expansion-panel>
 </mat-accordion>

@@ -60,6 +60,7 @@ import { CompanyComponent, DeleteCompanyDialogComponent } from './companies/comp
 import { CompaniesComponent } from './companies/companies.component';
 import { AddEditCompanyComponent } from './companies/add-edit-company/add-edit-company.component';
 import { AddEditGroupComponent } from './groups/add-edit-group/add-edit-group.component';
+import { GroupShowComponent } from './groups/groupShow/group/groupShow.component';
 
 @NgModule({
 	schemas: [
@@ -87,6 +88,7 @@ import { AddEditGroupComponent } from './groups/add-edit-group/add-edit-group.co
 				AddEditProjectComponent,
 		GroupsComponent,	
 			GroupComponent,
+				GroupShowComponent,
 				AddEditGroupComponent,
 				DeleteGroupDialogComponent,
 		CompanyComponent,

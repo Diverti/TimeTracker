@@ -4,7 +4,7 @@ export interface Task {
     id?: number;
     name: string;
     description: string;
-    is_done?: string;
+    is_done?: boolean;
     created_by?: string;
     project_id?: string;
     due_date: string;

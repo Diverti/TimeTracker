@@ -3,6 +3,8 @@
         <mat-expansion-panel-header>
             <mat-panel-title>#{{ task.id }} - {{ task.name }}</mat-panel-title>
             <mat-panel-description>
+                <span><mat-icon style='color: {{ task?.is_done ? "red" : "green" }}'>task_alt</mat-icon><span class="label">{{ task?.is_done ? "No" : "Yes"}}</span></span>
+
                 <button mat-mini-fab color="primary" class="edit-button" (click)="openEditTaskDialog(task)" matTooltip="Edit Task">
                     <mat-icon>edit</mat-icon>
                 </button>
@@ -10,11 +12,20 @@
                 <button mat-mini-fab color="primary" class="delete-button" (click)="openDeleteDialog(task)" matTooltip="Delete Task">
                     <mat-icon>delete</mat-icon>
                 </button>
+
+                <button mat-mini-fab color="primary" class="done-button" (click)="taskDone(task)" matTooltip="Task Done">
+                    <mat-icon>done</mat-icon>
+                </button>
             </mat-panel-description>
         </mat-expansion-panel-header>
         
         <h2>{{ task.name }}</h2>
         <p>{{ task.description }}</p>
         <p>{{ task.due_date | date:'mediumDate' }}</p>
+        <h2>Timer</h2>
+        <p>{{ timer }}</p>
+        <button mat-mini-fab color="primary" class="start-button" (click)="startTimer(task)" matTooltip="Start Task">
+            <mat-icon>not_started</mat-icon>
+        </button>
     </mat-expansion-panel>
 </mat-accordion>
