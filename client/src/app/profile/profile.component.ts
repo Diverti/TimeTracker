@@ -5,6 +5,7 @@ import { AuthService } from '@core/services/auth.service';
 import { BehaviorSubject } from 'rxjs';
 import { AddEditCompanyComponent } from '../companies/add-edit-company/add-edit-company.component';
 import { EditProfileComponent } from './add-edit-profile/edit-profile.component';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-profile',

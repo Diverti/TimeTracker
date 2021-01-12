@@ -15,6 +15,6 @@
         
         <h2>{{ task.name }}</h2>
         <p>{{ task.description }}</p>
-        <p>{{ task.due_date }}</p>
+        <p>{{ task.due_date | date:'mediumDate' }}</p>
     </mat-expansion-panel>
 </mat-accordion>

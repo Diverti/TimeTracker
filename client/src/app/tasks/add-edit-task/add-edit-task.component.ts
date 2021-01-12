@@ -4,6 +4,7 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatAutocompleteSelectedEvent, MatAutocomplete } from '@angular/material/autocomplete';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 import { TaskService } from '@core/services/task.service';
 import { NotificationService } from '@core/services/notification.service';
@@ -62,7 +63,7 @@ export class AddEditTaskComponent implements OnInit {
       setTimeout(() => {this.dialogRef.close()},500);
     }
     else {
-      this.ns.show('HIBA! Adatok nem megfelelőek!');
+      this.ns.show('Error! Check the input fields!');
     }
   }
 

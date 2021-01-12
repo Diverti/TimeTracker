@@ -28,6 +28,8 @@ export class SigninComponent {
 
   signin(form: FormGroup): void {
     if (form.valid) {
+      console.log("login");
+      
       this.as.login(<User>form.value);
     }
     else {

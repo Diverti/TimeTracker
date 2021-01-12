@@ -54,7 +54,7 @@ export class AddEditCompanyComponent implements OnInit {
       
       setTimeout(() => {this.dialogRef.close()},500);
     } else {
-      this.ns.show('HIBA! Adatok nem megfelelőek!');
+      this.ns.show('Error! Check the given inputs!');
     }
   }
 

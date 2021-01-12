@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable, Subscription } from 'rxjs';
+import { DatePipe } from '@angular/common';
 
 import { TaskService } from '@core/services/task.service';
 import { AddEditTaskComponent } from './add-edit-task/add-edit-task.component';

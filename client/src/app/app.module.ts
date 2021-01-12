@@ -34,7 +34,6 @@ import { AuthComponent } from './auth/auth.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { MenuComponent } from './menu/menu.component';
-import { SettingsComponent } from './settings/settings.component';
 import { ProfileComponent } from './profile/profile.component';
 
 import { GroupsComponent } from './groups/groups.component'
@@ -73,7 +72,6 @@ import { AddEditGroupComponent } from './groups/add-edit-group/add-edit-group.co
 			SigninComponent,
 			SignupComponent,
 		MenuComponent,
-		SettingsComponent,
 		ProfileComponent,
 			EditProfileComponent,
 		UsersComponent,

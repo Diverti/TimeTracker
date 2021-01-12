@@ -1,14 +1,14 @@
-<h2 *ngIf="isAddMode">Új csoport hozzáadása</h2>
-<h2 *ngIf="!isAddMode">Csoport módosítása</h2>
+<h2 *ngIf="isAddMode">New Gorup</h2>
+<h2 *ngIf="!isAddMode">Edit Group</h2>
 <form [formGroup]="groupForm" (ngSubmit)="addEditGroup(groupForm)" novalidate>
 	<div fxLayout="row wrap" fxLayoutAlign="start start">
 		<mat-form-field appearance="fill" fxFlex="100">
-			<mat-label>Csoport neve</mat-label>
-			<input matInput type="text" placeholder="Csoport neve" formControlName="name">
-			<mat-error>Mező kitöltése kötelező!</mat-error>
+			<mat-label>Group Name</mat-label>
+			<input matInput type="text" placeholder="Group Name" formControlName="name">
+			<mat-error>This feild is required!</mat-error>
 		</mat-form-field>
 		<div class="actions">
-			<button mat-raised-button color="accent">Rögzítés</button>
+			<button mat-raised-button color="accent">Save</button>
 		</div>
 	</div>
 </form>

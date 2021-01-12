@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Observable, Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 import { Project } from '@core/interfaces/project.interface';
 import { ProjectService } from '@core/services/project.service';

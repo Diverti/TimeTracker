@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { DatePipe } from '@angular/common';
 
 import { UserService } from '@core/services/user.service';
 //import { AddEditUserComponent } from './add-edit-user/add-edit-user.component';

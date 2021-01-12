@@ -6,6 +6,7 @@ import { MatAutocompleteSelectedEvent, MatAutocomplete } from '@angular/material
 import { MatChipInputEvent } from '@angular/material/chips';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { DatePipe } from '@angular/common';
 
 import { ProjectService } from '@core/services/project.service';
 import { NotificationService } from '@core/services/notification.service';
@@ -66,7 +67,7 @@ export class AddEditProjectComponent implements OnInit {
         this.is.updateProject(<Project>form.value, this.data.id);
       setTimeout(() => {this.dialogRef.close()},500);
     } else {
-      this.ns.show('HIBA! Adatok nem megfelelőek!');
+      this.ns.show('Error! Check the input fields!');
     }
   }
 }

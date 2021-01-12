@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { DatePipe } from '@angular/common';
 
 import { ProjectService } from '@core/services/project.service';
 import { AddEditProjectComponent } from './add-edit-project/add-edit-project.component';

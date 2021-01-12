@@ -6,6 +6,7 @@ import { MatAutocompleteSelectedEvent, MatAutocomplete } from '@angular/material
 import { MatChipInputEvent } from '@angular/material/chips';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { DatePipe } from '@angular/common';
 
 import { NotificationService } from '@core/services/notification.service';
 
@@ -48,7 +49,7 @@ export class EditProfileComponent implements OnInit {
       setTimeout(() => {this.dialogRef.close()},500);
     }
     else {
-      this.ns.show('HIBA! Adatok nem megfelelőek!');
+      this.ns.show('Error! Check the input fields!');
     }
   }
 }
