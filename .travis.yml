@@ -33,7 +33,6 @@ jobs:
               app: titrack
               on: 
                 branch: main
-        - stage: Test client
         - stage: Deploy client
           language: node_js
           node_js: node
