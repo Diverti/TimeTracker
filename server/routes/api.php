@@ -65,6 +65,6 @@ Route::middleware('auth:api')->group(function() {
     Route::get(     'tasks/{id}',             'TasksController@getTask');
     Route::put(     'tasks/{id}',             'TasksController@updateTask');
     Route::patch(   'tasks/{id}',             'TasksController@updateTask');
-    Route::post(    'tasks/{id}/done',        'TasksController@done');
+    Route::patch(    'tasks/{id}/done',        'TasksController@done');
     Route::delete(  'tasks/{id}',             'TasksController@deleteTask');
 });

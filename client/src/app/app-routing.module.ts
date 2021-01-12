@@ -14,10 +14,12 @@ import { AnonymGuard } from '@core/guards/anonym.guard';
 import { AuthComponent } from './auth/auth.component';
 
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { GroupShowComponent } from './groups/groupShow/group/groupShow.component';
 
 const routes: Routes = [
 	{ path: '', component: AuthComponent, /*canActivate: [AnonymGuard]*/ },
 	{ path: 'groups', component: GroupsComponent, canActivate: [AuthGuard] },
+	{ path: 'groups/:id', component: GroupShowComponent, canActivate: [AuthGuard] },
 	{ path: 'users', component: UsersComponent, canActivate: [AuthGuard] },
 	{ path: 'projects', component: ProjectsComponent, canActivate: [AuthGuard] },
 	{ path: 'projects/:id', component: ProjectShowComponent, canActivate: [AuthGuard] },

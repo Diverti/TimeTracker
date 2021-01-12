@@ -14,7 +14,7 @@ class GroupsController extends Controller
      */
     public function getGroups()
     {
-        return Group::with('projects','projects.tasks','projects.company')->get();
+        return Group::with('users','projects','projects.tasks','projects.company')->get();
     }
 
     /**
@@ -50,7 +50,7 @@ class GroupsController extends Controller
     public function getGroup($id)
     {
         try{
-            return Group::where('id',$id)->firstOrFail();
+            return Group::with('users','projects','projects.tasks','projects.company')->where('id',$id)->firstOrFail();
         } catch(\Illuminate\Database\Eloquent\ModelNotFoundException $e){
             return response('No group with such id.',404);
         }
