@@ -23,14 +23,6 @@ jobs:
         - stage: Deploy server
           language: php
           php: 7.2
-          before_script:
-            - cd client
-            - npm install
-          script: 
-            - cd client
-        - stage: Deploy server
-          language: php
-          php: 7.2
           script: skip
           deploy:
               skip_cleanup: true
