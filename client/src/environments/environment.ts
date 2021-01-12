@@ -6,8 +6,8 @@ export const environment = {
   production: false
 };
 
-export const baseUrl: string = 'http://127.0.0.1:8000/api';
 //export const baseUrl: string = 'http://127.0.0.1:8000/api';
+export const baseUrl: string = 'http://127.0.0.1:8000/api';
 
 
 /*
